@@ -9,6 +9,7 @@ import javafx.scene.layout.Pane;
 public class Game extends Pane {
 
     public Game() {
+        Globals.init();
         new SnakeHead(this, 500, 500);
 
         new SimpleEnemy(this);
@@ -39,5 +40,10 @@ public class Game extends Pane {
         });
         Globals.gameLoop = new GameLoop();
         Globals.gameLoop.start();
+    }
+
+    public enum GameMode {
+        SINGLE_PLAYER,
+        TWO_PLAYERS
     }
 }
