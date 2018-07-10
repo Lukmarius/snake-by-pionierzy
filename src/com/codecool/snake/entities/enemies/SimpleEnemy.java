@@ -47,6 +47,8 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
         destroy();
     }
 
+    private void bounce
+
     @Override
     public String getMessage() {
         return "10 damage";
