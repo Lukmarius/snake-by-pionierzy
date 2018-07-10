@@ -20,5 +20,6 @@ public class GameLoop extends AnimationTimer {
 
         Globals.gameObjects.removeAll(Globals.oldGameObjects);
         Globals.oldGameObjects.clear();
+
     }
 }
