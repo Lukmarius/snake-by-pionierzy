@@ -1,6 +1,8 @@
 package com.codecool.snake.entities.snakes;
 
+
 import com.codecool.snake.GameLoop;
+import com.codecool.snake.GameOver;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;

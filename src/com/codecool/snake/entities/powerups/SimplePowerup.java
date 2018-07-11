@@ -31,6 +31,6 @@ public class SimplePowerup extends GameEntity implements Interactable {
 
     @Override
     public String getMessage() {
-        return "Got simple power-up";
+        return "Got power-up :)";
     }
 }
