@@ -24,8 +24,8 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
         pane.getChildren().add(this);
         int speed = 1;
         Random rnd = new Random();
-        setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
-        setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
+        setX(rnd.nextDouble() * Globals.GAME_WIDTH);
+        setY(rnd.nextDouble() * Globals.GAME_HEIGHT);
 
         double direction = rnd.nextDouble() * 360;
         setRotate(direction);

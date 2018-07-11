@@ -6,12 +6,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class MainController {
 
     private Stage primaryStage;
 
     public MainController(Stage primaryStage) {
         this.primaryStage = primaryStage;
+    }
+
+    public Stage getPrimaryStage() {
+        return primaryStage;
     }
 
     public void showMainMenu() {
@@ -21,15 +27,29 @@ public class MainController {
             MainMenuController mainMenuController = mainMenuLoader.getController();
             mainMenuController.setMainController(this);
             primaryStage.setScene(new Scene(root, MainMenuController.MENU_WIDTH, MainMenuController.MENU_HEIGHT));
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
             Platform.exit();
         }
     }
 
     public void startNewGame(Game.GameMode gameMode) {
-        Game game = new Game();
-        primaryStage.setScene(new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
-        game.start();
+        try {
+            primaryStage.hide();
+
+            FXMLLoader gameLoader = new FXMLLoader(getClass().getResource(GameController.GameFXML));
+            Parent root = gameLoader.load();
+
+            GameController gameController = gameLoader.getController();
+            gameController.setMainController(this);
+            primaryStage.setScene(new Scene(root, GameController.WINDOW_WIDTH, GameController.WINDOW_HEIGHT));
+
+            gameController.setUpGame(gameMode);
+            primaryStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            Platform.exit();
+        }
     }
 }

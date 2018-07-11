@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="780.0" maxWidth="1000.0" prefHeight="780.0" prefWidth="1000.0" stylesheets="@/css/game.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codecool.snake.GameController">
+   <children>
+      <AnchorPane prefHeight="80.0" prefWidth="1000.0" styleClass="topbar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <padding>
+            <Insets left="20.0" right="20.0" top="10.0" />
+         </padding>
+         <children>
+            <Button fx:id="pauseBtn" focusTraversable="false" mnemonicParsing="false" onAction="#showPauseMenu" prefHeight="47.0" prefWidth="47.0" styleClass="pauseBtn" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <HBox layoutX="32.0" layoutY="12.0" prefHeight="20.0" prefWidth="450.0" spacing="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="150.0" spacing="2.0">
+                     <children>
+                        <Label fx:id="playerName1" text="Player 1" />
+                        <HBox maxHeight="20.0" maxWidth="200.0" prefHeight="20.0" prefWidth="200.0" styleClass="healthBar">
+                           <children>
+                              <Rectangle fx:id="playerHealthBar1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="18.0" strokeType="INSIDE" styleClass="healthBarLive" width="200.0" />
+                              <Rectangle fx:id="playerHealthBarLost1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="18.0" layoutX="10.0" layoutY="10.0" strokeType="INSIDE" styleClass="healthBarLost" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                           <children>
+                              <Label text="Length: " />
+                              <Label fx:id="playerScore1" text="0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+      <Pane fx:id="gameContainer" prefHeight="700.0" prefWidth="1000.0" styleClass="gameContainer" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="80.0">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </Pane>
+   </children>
+</AnchorPane>

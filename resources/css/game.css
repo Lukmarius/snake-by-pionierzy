@@ -1,0 +1,36 @@
+.gameContainer {
+    -fx-border-style: solid;
+    -fx-border-width: 2;
+    -fx-border-color: darkgreen;
+}
+
+.topbar {
+    -fx-background-color: #ccc;
+}
+
+.pauseBtn {
+    -fx-background-color: transparent;
+    -fx-background-image: url(/navigation/bt_pause.png);
+}
+
+.pauseBtn:hover {
+    -fx-border-style: solid;
+    -fx-border-width: 2;
+    -fx-border-color: darkgreen;
+    -fx-border-radius: 50%;
+    -fx-cursor: hand;
+}
+
+.healthBar {
+    -fx-border-style: solid;
+    -fx-border-width: 1;
+    -fx-border-color: #000;
+}
+
+.healthBarLive {
+    -fx-fill: limegreen;
+}
+
+.healthBarLost {
+    -fx-fill: red;
+}
