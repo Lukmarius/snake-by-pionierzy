@@ -10,6 +10,9 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SnakeHead extends GameEntity implements Animatable {
 
     private static final int INITIAL_LENGTH = 4;
@@ -23,6 +26,7 @@ public class SnakeHead extends GameEntity implements Animatable {
     private boolean isInvulnerable;
     private static int snakeCounter = 0;
     private int snakeID;
+    private List<GameEntity> tailElements;
 
     public SnakeHead(Pane pane, int xc, int yc) {
         super(pane);
@@ -31,6 +35,7 @@ public class SnakeHead extends GameEntity implements Animatable {
         health = 100;
         healthProperty = new SimpleIntegerProperty(health);
         tail = this;
+        tailElements = new ArrayList<>();
         setImage(Globals.snakeHead);
         pane.getChildren().add(this);
 
@@ -66,14 +71,18 @@ public class SnakeHead extends GameEntity implements Animatable {
 
         // check for game over condition
         if (isOutOfBounds() || health <= 0) {
-            System.out.println("Game Over");
-            Globals.gameLoop.stop();
+            System.out.println("Snake Dead");
+            for (GameEntity tail: tailElements) {
+                tail.destroy();
+            }
+            destroy();
         }
     }
 
     public void addPart(int numParts) {
         for (int i = 0; i < numParts; i++) {
             SnakeBody newPart = new SnakeBody(pane, tail);
+            tailElements.add(newPart);
             tail = newPart;
         }
     }
