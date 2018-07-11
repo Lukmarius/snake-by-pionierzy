@@ -26,9 +26,19 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
         pane.getChildren().add(this);
         speed = 1;
         Random rnd = new Random();
-        setX(rnd.nextDouble() * Globals.GAME_WIDTH);
-        setY(rnd.nextDouble() * Globals.GAME_HEIGHT);
+        boolean isOverlapping;
 
+        do {
+            isOverlapping = false;
+            setX(rnd.nextDouble() * Globals.GAME_WIDTH);
+            setY(rnd.nextDouble() * Globals.GAME_HEIGHT);
+            for (SnakeHead snake : Globals.players) {
+                if (getY() > snake.getY() - 30 && getY() < snake.getY() + 30 && getX() > snake.getX() - 30 && getX() < snake.getX() + 30) {
+                    isOverlapping = true;
+                }
+            }
+        }
+        while (isOverlapping);
         direction = rnd.nextDouble() * 360;
         setRotate(direction);
         heading = Utils.directionToVector(direction, speed);
@@ -54,7 +64,7 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
     private void bounce() {
         Random rnd = new Random();
 
-        direction = direction - rnd.nextDouble() * 90;
+        direction = direction - rnd.nextDouble() * 180;
         setRotate(direction);
         heading = Utils.directionToVector(direction, speed);
     }

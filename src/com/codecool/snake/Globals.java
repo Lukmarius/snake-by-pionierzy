@@ -33,6 +33,8 @@ public class Globals {
     public static List<SnakeHead> players;
     public static boolean isGamePaused;
 
+    public static GameOver gameOver;
+
     public static void init() {
         gameObjects = new LinkedList<>();
         newGameObjects = new LinkedList<>();
@@ -40,6 +42,7 @@ public class Globals {
         gameLoop = null;
         players = new ArrayList<>(2);
         isGamePaused = false;
+        gameOver = new GameOver();
     }
 
     public static void addGameObject(GameEntity toAdd) {

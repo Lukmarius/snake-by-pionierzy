@@ -1,5 +1,7 @@
 package com.codecool.snake;
 
+import com.codecool.snake.entities.GameEntity;
+import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -39,5 +41,13 @@ public class GameOver {
 
         modalStage.setScene(new Scene(vbox));
         modalStage.show();
+    }
+
+
+    public void gameOverIfSnakesAreDead (boolean exists){
+        if (!exists){
+            Globals.gameLoop.stop();
+            showPopUp();
+        }
     }
 }

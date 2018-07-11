@@ -22,15 +22,18 @@ public class SnakeHead extends GameEntity implements Animatable {
     private static final int INITIAL_HEALTH = 100;
 
     private static final float speed = 2;
-    private static final float turnRate = 2;
+    private static final float baseTurnRate = 2;
+    private static final float superTurnRate = 6;
+    private float actualTurnRate = baseTurnRate;
     private GameEntity tail; // the last element. Needed to know where to add the next part.
-
-    private IntegerProperty health;
-    private IntegerProperty length;
-
-    private boolean isInvulnerable;
+    public IntegerProperty health;
+    public IntegerProperty length;
+    private boolean invulnerable;
+    private boolean turningFaster;
     private static int snakeCounter = 0;
     private int snakeID;
+    private int turnerUpDuration;
+    private int involnerabiltyDuration = 60*5;
     private List<GameEntity> tailElements;
 
     public static void resetSnakeCounter() {
@@ -74,20 +77,21 @@ public class SnakeHead extends GameEntity implements Animatable {
 
     public void step() {
         double dir = getRotate();
+
         if (snakeID == 0) {
             if (Globals.leftKeyDown) {
-                dir = dir - turnRate;
+                dir = dir - actualTurnRate;
             }
             if (Globals.rightKeyDown) {
-                dir = dir + turnRate;
+                dir = dir + actualTurnRate;
             }
         }
         else if (snakeID == 1) {
             if (Globals.AKeyDown) {
-                dir = dir - turnRate;
+                dir = dir - actualTurnRate;
             }
             if (Globals.DKeyDown) {
-                dir = dir + turnRate;
+                dir = dir + actualTurnRate;
             }
         }
         // set rotation and position
@@ -101,6 +105,7 @@ public class SnakeHead extends GameEntity implements Animatable {
             if (getBoundsInParent().intersects(entity.getBoundsInParent())) {
                 if (entity instanceof SnakeHead && !entity.equals(this)) {
                     Globals.gameLoop.stop();
+                    Globals.gameOver.showPopUp();
                 }
                 else if (entity instanceof Interactable) {
                     Interactable interactable = (Interactable) entity;
@@ -108,6 +113,9 @@ public class SnakeHead extends GameEntity implements Animatable {
                     System.out.println(interactable.getMessage());
                 }
             }
+        }
+        if(turningFaster){
+           turnFasterFor5sec();
         }
 
         // check for game over condition
@@ -131,5 +139,27 @@ public class SnakeHead extends GameEntity implements Animatable {
 
     public void changeHealth(int diff) {
         health.setValue(getHealth() + diff);
+    }
+
+
+
+    public void switchInvulnerable() {
+        this.invulnerable = !invulnerable;
+    }
+
+
+    public void turnFaster(){
+        turningFaster = true;
+        actualTurnRate = superTurnRate;
+        turnerUpDuration = 60*5;
+    }
+
+    private void turnFasterFor5sec(){
+        if(turnerUpDuration>0){
+            turnerUpDuration--;
+        }else{
+            actualTurnRate = baseTurnRate;
+            turningFaster = false;
+        }
     }
 }
