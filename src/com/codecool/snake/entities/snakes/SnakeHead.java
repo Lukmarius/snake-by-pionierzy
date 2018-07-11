@@ -13,13 +13,15 @@ import javafx.scene.layout.Pane;
 public class SnakeHead extends GameEntity implements Animatable {
 
     private static final int INITIAL_LENGTH = 4;
+    private static final int INITIAL_HEALTH = 100;
 
     private static final float speed = 2;
     private static final float turnRate = 2;
     private GameEntity tail; // the last element. Needed to know where to add the next part.
-    private int health;
-    public IntegerProperty healthProperty;
-    public IntegerProperty length;
+
+    private IntegerProperty health;
+    private IntegerProperty length;
+
     private boolean isInvulnerable;
     private static int snakeCounter = 0;
     private int snakeID;
@@ -31,19 +33,27 @@ public class SnakeHead extends GameEntity implements Animatable {
 
         this.snakeID = snakeCounter++;
 
-        health = 100;
-        healthProperty = new SimpleIntegerProperty(health);
-        tail = this;
-        setImage(Globals.snakeHead);
-        pane.getChildren().add(this);
+        health = new SimpleIntegerProperty(INITIAL_HEALTH);
 
         addPart(INITIAL_LENGTH);
         length = new SimpleIntegerProperty(INITIAL_LENGTH);
+
+        tail = this;
+        setImage(Globals.snakeHead);
+        pane.getChildren().add(this);
         Globals.player1 = this;
     }
 
     public int getSnakeID() {
         return snakeID;
+    }
+
+    public int getHealth() {
+        return health.get();
+    }
+
+    public IntegerProperty getHealthProperty() {
+        return health;
     }
 
     public void step() {
@@ -72,7 +82,7 @@ public class SnakeHead extends GameEntity implements Animatable {
         }
 
         // check for game over condition
-        if (isOutOfBounds() || health <= 0) {
+        if (isOutOfBounds() || getHealth() <= 0) {
             System.out.println("Game Over");
             Globals.gameLoop.stop();
         }
@@ -86,7 +96,6 @@ public class SnakeHead extends GameEntity implements Animatable {
     }
 
     public void changeHealth(int diff) {
-        health += diff;
-        healthProperty.set(health);
+        health.setValue(getHealth() + diff);
     }
 }

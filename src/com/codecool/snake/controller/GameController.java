@@ -75,7 +75,7 @@ public class GameController {
     }
 
     void initIndicators() {
-        playerHealthBar1.widthProperty().bind(Globals.player1.healthProperty);
-        playerScore1.textProperty().bind(Globals.player1.length.asString());
+        playerHealthBar1.widthProperty().bind(Globals.player1.getHealthProperty());
+//        playerScore1.textProperty().bind(Globals.player1.length.asString());
     }
 }
