@@ -38,8 +38,8 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
     public void step() {
         if (isOutOfBounds()) {
             bounce();
-            setX(getX() + heading.getX());
-            setY(getY() + heading.getY());
+            setX(getX() + 5 * heading.getX());
+            setY(getY() + 5 * heading.getY());
         }
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
@@ -54,7 +54,7 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
     private void bounce() {
         Random rnd = new Random();
 
-        direction = direction - rnd.nextDouble() * 180;
+        direction = direction - rnd.nextDouble() * 90;
         setRotate(direction);
         heading = Utils.directionToVector(direction, speed);
     }
@@ -62,5 +62,9 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
     @Override
     public String getMessage() {
         return "10 damage";
+    }
+
+    public double getDirection() {
+        return direction;
     }
 }
