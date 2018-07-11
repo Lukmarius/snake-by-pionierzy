@@ -1,5 +1,6 @@
 package com.codecool.snake.entities.snakes;
 
+import com.codecool.snake.GameOver;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
@@ -9,6 +10,9 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SnakeHead extends GameEntity implements Animatable {
 
@@ -25,6 +29,7 @@ public class SnakeHead extends GameEntity implements Animatable {
     private boolean isInvulnerable;
     private static int snakeCounter = 0;
     private int snakeID;
+    private List<GameEntity> tailElements;
 
     public SnakeHead(Pane pane, int xc, int yc) {
         super(pane);
@@ -33,14 +38,18 @@ public class SnakeHead extends GameEntity implements Animatable {
 
         this.snakeID = snakeCounter++;
 
+
         health = new SimpleIntegerProperty(INITIAL_HEALTH);
+
+        tail = this;
+        tailElements = new ArrayList<>();
+        setImage(Globals.snakeHead);
+        pane.getChildren().add(this);
+
 
         addPart(INITIAL_LENGTH);
         length = new SimpleIntegerProperty(INITIAL_LENGTH);
 
-        tail = this;
-        setImage(Globals.snakeHead);
-        pane.getChildren().add(this);
         Globals.player1 = this;
     }
 
@@ -83,14 +92,18 @@ public class SnakeHead extends GameEntity implements Animatable {
 
         // check for game over condition
         if (isOutOfBounds() || getHealth() <= 0) {
-            System.out.println("Game Over");
-            Globals.gameLoop.stop();
+            System.out.println("Snake Dead");
+            for (GameEntity tail: tailElements) {
+                tail.destroy();
+            }
+            destroy();
         }
     }
 
     public void addPart(int numParts) {
         for (int i = 0; i < numParts; i++) {
             SnakeBody newPart = new SnakeBody(pane, tail);
+            tailElements.add(newPart);
             tail = newPart;
         }
     }
