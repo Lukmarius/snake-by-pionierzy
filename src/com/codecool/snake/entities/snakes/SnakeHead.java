@@ -83,6 +83,7 @@ public class SnakeHead extends GameEntity implements Animatable {
             for (GameEntity tail: tailElements) {
                 tail.destroy();
             }
+            Globals.gameOver.gameOverIfAnotherSnakeIsDead(this);
             destroy();
         }
     }
