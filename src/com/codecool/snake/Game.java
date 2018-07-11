@@ -8,9 +8,16 @@ import javafx.scene.layout.Pane;
 
 public class Game extends Pane {
 
-    public Game() {
+    private GameMode gameMode;
+
+    public Game(GameMode gameMode) {
         Globals.init();
+        this.gameMode = gameMode;
+
         new SnakeHead(this, 500, 500);
+        if (gameMode == GameMode.TWO_PLAYERS) {
+            new SnakeHead(this, 200, 500);
+        }
 
         new SimpleEnemy(this);
         new SimpleEnemy(this);
@@ -30,20 +37,6 @@ public class Game extends Pane {
     }
 
     public void start() {
-        Scene scene = getScene();
-        scene.setOnKeyPressed(event -> {
-            switch (event.getCode()) {
-                case LEFT:  Globals.leftKeyDown  = true; break;
-                case RIGHT: Globals.rightKeyDown  = true; break;
-            }
-        });
-
-        scene.setOnKeyReleased(event -> {
-            switch (event.getCode()) {
-                case LEFT:  Globals.leftKeyDown  = false; break;
-                case RIGHT: Globals.rightKeyDown  = false; break;
-            }
-        });
         Globals.gameLoop = new GameLoop();
         Globals.gameLoop.start();
     }

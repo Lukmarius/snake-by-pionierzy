@@ -1,5 +1,6 @@
-package com.codecool.snake;
+package com.codecool.snake.controller;
 
+import com.codecool.snake.Game;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
@@ -7,7 +8,7 @@ public class MainMenuController {
 
     public static final double MENU_WIDTH = 600;
     public static final double MENU_HEIGHT = 400;
-    public static final String MenuFXML = "view/fxml/main_menu.fxml";
+    public static final String MenuFXML = "../view/fxml/main_menu.fxml";
 
     @FXML private Button newGameBtn1p;
     @FXML private Button newGameBtn2p;

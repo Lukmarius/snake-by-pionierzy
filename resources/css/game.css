@@ -25,12 +25,11 @@
     -fx-border-style: solid;
     -fx-border-width: 1;
     -fx-border-color: #000;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-background-color: red;
 }
 
 .healthBarLive {
     -fx-fill: limegreen;
-}
-
-.healthBarLost {
-    -fx-fill: red;
 }

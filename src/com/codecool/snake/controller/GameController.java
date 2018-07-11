@@ -1,9 +1,7 @@
-package com.codecool.snake;
+package com.codecool.snake.controller;
 
-import com.codecool.snake.entities.GameEntity;
-import com.codecool.snake.entities.snakes.SnakeHead;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
+import com.codecool.snake.Game;
+import com.codecool.snake.Globals;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -16,10 +14,9 @@ public class GameController {
 
     public static final double WINDOW_WIDTH = 1000;
     public static final double WINDOW_HEIGHT = 780;
-    public static final String GameFXML = "view/fxml/game.fxml";
+    public static final String GameFXML = "../view/fxml/game.fxml";
 
     @FXML private Rectangle playerHealthBar1;
-    @FXML private Rectangle playerHealthBarLost1;
     @FXML private Label playerScore1;
     @FXML private Label playerName1;
 
@@ -50,15 +47,35 @@ public class GameController {
     }
 
     void setUpGame(Game.GameMode gameMode) {
-        Game game = new Game();
+        Game game = new Game(gameMode);
         gameContainer.getChildren().add(game);
-        initHealthBar();
+
+        initIndicators();
+
+        Scene scene = game.getScene();
+        scene.setOnKeyPressed(event -> {
+            switch (event.getCode()) {
+                case LEFT:  Globals.leftKeyDown  = true; break;
+                case RIGHT: Globals.rightKeyDown  = true; break;
+                case A: Globals.AKeyDown  = true; break;
+                case D: Globals.DKeyDown  = true; break;
+            }
+        });
+        scene.setOnKeyReleased(event -> {
+            switch (event.getCode()) {
+                case LEFT:  Globals.leftKeyDown  = false; break;
+                case RIGHT: Globals.rightKeyDown  = false; break;
+                case A: Globals.AKeyDown  = false; break;
+                case D: Globals.DKeyDown  = false; break;
+            }
+        });
+
         isPaused = false;
         game.start();
     }
 
-    void initHealthBar() {
-        System.out.println(playerHealthBar1.widthProperty());
+    void initIndicators() {
         playerHealthBar1.widthProperty().bind(Globals.player1.healthProperty);
+        playerScore1.textProperty().bind(Globals.player1.length.asString());
     }
 }

@@ -1,5 +1,6 @@
-package com.codecool.snake;
+package com.codecool.snake.controller;
 
+import com.codecool.snake.Game;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

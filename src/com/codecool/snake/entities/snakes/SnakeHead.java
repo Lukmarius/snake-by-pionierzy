@@ -12,11 +12,14 @@ import javafx.scene.layout.Pane;
 
 public class SnakeHead extends GameEntity implements Animatable {
 
+    private static final int INITIAL_LENGTH = 4;
+
     private static final float speed = 2;
     private static final float turnRate = 2;
     private GameEntity tail; // the last element. Needed to know where to add the next part.
     private int health;
     public IntegerProperty healthProperty;
+    public IntegerProperty length;
     private boolean isInvulnerable;
     private static int snakeCounter = 0;
     private int snakeID;
@@ -31,7 +34,8 @@ public class SnakeHead extends GameEntity implements Animatable {
         setImage(Globals.snakeHead);
         pane.getChildren().add(this);
 
-        addPart(4);
+        addPart(INITIAL_LENGTH);
+        length = new SimpleIntegerProperty(INITIAL_LENGTH);
         Globals.player1 = this;
     }
 
