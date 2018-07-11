@@ -15,26 +15,7 @@
          </padding>
          <children>
             <Button fx:id="pauseBtn" focusTraversable="false" mnemonicParsing="false" onAction="#showPauseMenu" prefHeight="47.0" prefWidth="47.0" styleClass="pauseBtn" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <HBox layoutX="32.0" layoutY="12.0" prefHeight="20.0" prefWidth="450.0" spacing="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <VBox prefHeight="60.0" prefWidth="150.0" spacing="2.0">
-                     <children>
-                        <Label fx:id="playerName1" text="Player 1" />
-                        <AnchorPane maxHeight="20.0" maxWidth="102.0" minHeight="20.0" minWidth="102.0" prefHeight="20.0" prefWidth="102.0" styleClass="healthBar">
-                           <children>
-                              <Rectangle fx:id="playerHealthBar1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="18.0" strokeType="INSIDE" styleClass="healthBarLive" width="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                           </children>
-                        </AnchorPane>
-                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
-                           <children>
-                              <Label text="Length: " />
-                              <Label fx:id="playerScore1" text="0" />
-                           </children>
-                        </HBox>
-                     </children>
-                  </VBox>
-               </children>
-            </HBox>
+            <HBox fx:id="playerDataContainer" layoutX="32.0" layoutY="12.0" prefHeight="20.0" prefWidth="450.0" spacing="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
          </children>
       </AnchorPane>
       <Pane fx:id="gameContainer" prefHeight="700.0" prefWidth="1000.0" styleClass="gameContainer" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="80.0">
