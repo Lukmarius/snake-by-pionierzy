@@ -104,6 +104,7 @@ public class SnakeHead extends GameEntity implements Animatable {
             if (getBoundsInParent().intersects(entity.getBoundsInParent())) {
                 if (entity instanceof SnakeHead && !entity.equals(this)) {
                     Globals.gameLoop.stop();
+                    Globals.gameOver.showPopUp();
                 }
                 else if (entity instanceof Interactable) {
                     Interactable interactable = (Interactable) entity;
@@ -155,7 +156,6 @@ public class SnakeHead extends GameEntity implements Animatable {
     private void turnFasterFor5sec(){
         if(turnerUpDuration>0){
             turnerUpDuration--;
-            System.out.println(turnerUpDuration);
         }else{
             actualTurnRate = baseTurnRate;
             turningFaster = false;
