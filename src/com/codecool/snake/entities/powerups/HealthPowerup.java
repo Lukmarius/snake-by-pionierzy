@@ -10,6 +10,8 @@ import java.util.Random;
 
 public class HealthPowerup extends GameEntity implements Interactable {
 
+    private static final int HEALTH_GAIN = 10;
+
     public HealthPowerup(Pane pane) {
         super(pane);
         setImage(Globals.powerupBerry);
@@ -22,7 +24,7 @@ public class HealthPowerup extends GameEntity implements Interactable {
 
     @Override
     public void apply(SnakeHead snakeHead) {
-        snakeHead.healthProperty.add(10);
+        snakeHead.changeHealth(HEALTH_GAIN);
         destroy();
     }
 
