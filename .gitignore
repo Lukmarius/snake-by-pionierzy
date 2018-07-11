@@ -12,6 +12,7 @@
 .idea/**/compiler.xml
 .idea/**/vcs.xml
 oop-snake.iml
+.idea/modules.xml
 
 # Sensitive or high-churn files:
 .idea/**/dataSources/
