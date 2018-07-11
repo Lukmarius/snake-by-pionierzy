@@ -14,7 +14,7 @@ public class HealthPowerup extends GameEntity implements Interactable {
 
     public HealthPowerup(Pane pane) {
         super(pane);
-        setImage(Globals.powerupBerry);
+        setImage(Globals.healthPowerUp);
         pane.getChildren().add(this);
 
         Random rnd = new Random();
