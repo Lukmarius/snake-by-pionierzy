@@ -9,10 +9,12 @@ import javafx.scene.layout.Pane;
 import java.util.Random;
 
 public class HealthPowerup extends GameEntity implements Interactable {
+    private int healthGain;
 
     public HealthPowerup(Pane pane) {
         super(pane);
         setImage(Globals.powerupBerry);
+        healthGain = 10;
         pane.getChildren().add(this);
 
         Random rnd = new Random();
@@ -22,7 +24,7 @@ public class HealthPowerup extends GameEntity implements Interactable {
 
     @Override
     public void apply(SnakeHead snakeHead) {
-        snakeHead.healthProperty.add(10);
+        snakeHead.healthProperty.add(healthGain);
         destroy();
     }
 
