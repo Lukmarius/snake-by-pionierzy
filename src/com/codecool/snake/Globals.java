@@ -44,7 +44,6 @@ public class Globals {
         gameLoop = null;
         players = new ArrayList<>(2);
         isGamePaused = false;
-        gameOver = new GameOver();
     }
 
     public static void addGameObject(GameEntity toAdd) {

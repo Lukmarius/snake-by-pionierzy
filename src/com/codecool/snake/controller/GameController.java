@@ -1,6 +1,7 @@
 package com.codecool.snake.controller;
 
 import com.codecool.snake.Game;
+import com.codecool.snake.GameOver;
 import com.codecool.snake.Globals;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -38,6 +39,9 @@ public class GameController {
         for (int i = 0; i <= players; i++) {
             loadPlayerDataDisplay(i);
         }
+
+        Globals.gameOver = new GameOver();
+        Globals.gameOver.setMainController(mainController);
 
         Scene scene = game.getScene();
         scene.setOnKeyPressed(event -> {
