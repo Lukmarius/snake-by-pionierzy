@@ -69,11 +69,21 @@ public class SnakeHead extends GameEntity implements Animatable {
 
     public void step() {
         double dir = getRotate();
-        if (Globals.leftKeyDown) {
-            dir = dir - turnRate;
+        if (snakeID == 0) {
+            if (Globals.leftKeyDown) {
+                dir = dir - turnRate;
+            }
+            if (Globals.rightKeyDown) {
+                dir = dir + turnRate;
+            }
         }
-        if (Globals.rightKeyDown) {
-            dir = dir + turnRate;
+        else if (snakeID == 1) {
+            if (Globals.AKeyDown) {
+                dir = dir - turnRate;
+            }
+            if (Globals.DKeyDown) {
+                dir = dir + turnRate;
+            }
         }
         // set rotation and position
         setRotate(dir);
