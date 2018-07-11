@@ -31,6 +31,7 @@ public class Globals {
     public static GameLoop gameLoop;
     public static GameOver gameOver;
     public static SnakeHead player1;
+    public static List<SnakeHead> players;
 
     public static void init() {
         gameObjects = new LinkedList<>();
@@ -49,5 +50,9 @@ public class Globals {
 
     public static List<GameEntity> getGameObjects() {
         return Collections.unmodifiableList(gameObjects);
+    }
+
+    public static void addPlayer(SnakeHead player) {
+        players.add(player);
     }
 }
