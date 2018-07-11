@@ -29,7 +29,7 @@ public class Globals {
     public static List<GameEntity> newGameObjects; // Holds game objects crated in this frame.
     public static List<GameEntity> oldGameObjects; // Holds game objects that will be destroyed this frame.
     public static GameLoop gameLoop;
-    public static SnakeHead player1;
+    public static List<SnakeHead> players;
 
     public static void init() {
         gameObjects = new LinkedList<>();
@@ -47,5 +47,9 @@ public class Globals {
 
     public static List<GameEntity> getGameObjects() {
         return Collections.unmodifiableList(gameObjects);
+    }
+
+    public static void addPlayer(SnakeHead player) {
+        players.add(player);
     }
 }
