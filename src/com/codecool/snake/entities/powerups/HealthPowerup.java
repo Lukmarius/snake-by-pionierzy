@@ -7,7 +7,7 @@ import javafx.scene.layout.Pane;
 
 public class HealthPowerup extends GameEntity implements Interactable {
 
-    public HealthPowerup(Pane pane) {
+    protected HealthPowerup(Pane pane) {
         super(pane);
     }
 
