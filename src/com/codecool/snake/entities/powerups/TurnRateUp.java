@@ -7,7 +7,7 @@ import javafx.scene.layout.Pane;
 
 public class TurnRateUp extends GameEntity implements Interactable {
 
-    public TurnRateUp(Pane pane) {
+    protected TurnRateUp(Pane pane) {
         super(pane);
     }
 

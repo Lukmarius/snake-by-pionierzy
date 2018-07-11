@@ -11,19 +11,21 @@ import java.util.Random;
 // a simple powerup that makes the snake grow TODO make other powerups
 public class SimplePowerup extends GameEntity implements Interactable {
 
+    private static final int LENGTH_GAIN = 2;
+
     public SimplePowerup(Pane pane) {
         super(pane);
         setImage(Globals.powerupBerry);
         pane.getChildren().add(this);
 
         Random rnd = new Random();
-        setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
-        setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
+        setX(rnd.nextDouble() * Globals.GAME_WIDTH);
+        setY(rnd.nextDouble() * Globals.GAME_HEIGHT);
     }
 
     @Override
     public void apply(SnakeHead snakeHead) {
-        snakeHead.addPart(4);
+        snakeHead.addPart(LENGTH_GAIN);
         destroy();
     }
 

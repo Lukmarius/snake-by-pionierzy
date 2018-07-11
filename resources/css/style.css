@@ -1,0 +1,21 @@
+.menuBtn {
+    -fx-border-width: 2px;
+    -fx-border-style: solid;
+    -fx-border-color: darkgreen;
+    -fx-border-radius: 4px;
+    -fx-background-color: transparent;
+    -fx-font-size: 20px;
+}
+
+.menuBtn:hover {
+    -fx-background-color: darkgreen;
+    -fx-text-fill: #fff;
+    -fx-cursor: hand;
+}
+
+.backdrop {
+    -fx-background-image: url(/main_menu/bg.png);
+    -fx-border-width: 4px;
+    -fx-border-style: solid;
+    -fx-border-color: #000;
+}
