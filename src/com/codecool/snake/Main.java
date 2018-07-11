@@ -1,10 +1,12 @@
 package com.codecool.snake;
 
+import com.codecool.snake.controller.MainController;
 import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+
+    private static final String TITLE = "Wild snakes";
 
     public static void main(String[] args) {
         launch(args);
@@ -12,11 +14,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        Game game = new Game();
-
-        primaryStage.setTitle("Snake Game");
-        primaryStage.setScene(new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
+        MainController mainController = new MainController(primaryStage);
+        primaryStage.setTitle(TITLE);
+        mainController.showMainMenu();
         primaryStage.show();
-        game.start();
     }
 }

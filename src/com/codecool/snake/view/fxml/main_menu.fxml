@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="backdrop" stylesheets="@/css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codecool.snake.controller.MainMenuController">
+   <children>
+      <Button fx:id="newGameBtn1p" defaultButton="true" layoutX="69.0" layoutY="299.0" mnemonicParsing="false" onAction="#startNewGame1p" prefWidth="200.0" styleClass="menuBtn" text="Single Player" />
+      <Button fx:id="newGameBtn2p" layoutX="342.0" layoutY="299.0" mnemonicParsing="false" onAction="#startNewGame2p" prefWidth="200.0" styleClass="menuBtn" text="2 Players" />
+      <ImageView fitHeight="160.0" fitWidth="486.0" layoutX="55.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="55.0" AnchorPane.topAnchor="50.0">
+         <image>
+            <Image url="@/main_menu/title.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

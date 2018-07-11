@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
+   sodipodi:docname="title.svg">
+  <defs
+     id="defs2">
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect4514"
+       is_visible="true"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false" />
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect4514-8"
+       is_visible="true"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="461.71506"
+     inkscape:cy="761.7716"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       id="text4506"
+       x="6.8035712"
+       y="-1.7008928"
+       transform="translate(3.5907738,-2.2678571)"><textPath
+         xlink:href="#path4512"
+         id="textPath4574"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Gill Sans Ultra Bold';-inkscape-font-specification:'Gill Sans Ultra Bold, ';fill:#007b00;fill-opacity:1;stroke-width:0.26458332">Ch...e, muje,</textPath></text>
+    <path
+       style="fill:none;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 52.53869,89.113094 c 15.497337,-9.071612 30.994361,-18.14304 52.24155,-16.443362 21.24719,1.699678 48.24585,14.170733 75.24384,26.641478"
+       id="path4512"
+       inkscape:connector-curvature="0"
+       inkscape:path-effect="#path-effect4514"
+       inkscape:original-d="M 52.53869,89.113094 C 68.035979,80.0414 83.533003,70.969972 99.02976,61.89881 c 26.99782,12.470282 53.99648,24.941336 80.99432,37.4124"
+       sodipodi:nodetypes="ccc" />
+    <path
+       style="fill:none;stroke:none;stroke-width:0.15890782px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 71.379079,99.215335 c 9.118642,-7.149296 18.237446,-14.298719 35.892481,-13.261052 17.65503,1.037668 43.84813,10.26212 70.04062,19.486357"
+       id="path4512-4"
+       inkscape:connector-curvature="0"
+       inkscape:path-effect="#path-effect4514-8"
+       inkscape:original-d="M 71.379079,99.215335 C 80.497693,92.066004 89.616497,84.91658 98.734488,77.767852 124.9267,86.991632 151.1198,96.216083 177.31218,105.44064"
+       sodipodi:nodetypes="ccc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       id="text4506-4"><textPath
+         xlink:href="#path4512-4"
+         id="textPath4571"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Gill Sans Ultra Bold';-inkscape-font-specification:'Gill Sans Ultra Bold, ';fill:#007b00;fill-opacity:1;stroke-width:0.26458332;font-size:14.11111111px">dzikie węże</textPath></text>
+  </g>
+</svg>
