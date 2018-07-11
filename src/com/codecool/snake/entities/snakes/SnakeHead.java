@@ -36,17 +36,21 @@ public class SnakeHead extends GameEntity implements Animatable {
     private int involnerabiltyDuration = 60*5;
     private List<GameEntity> tailElements;
 
-
-
+    public static void resetSnakeCounter() {
+        SnakeHead.snakeCounter = 0;
+    }
 
     public SnakeHead(Pane pane, int xc, int yc) {
         super(pane);
+        this.snakeID = snakeCounter++;
         setX(xc);
         setY(yc);
-        setImage(Globals.snakeHead);
+        if (snakeID == 0){
+            setImage(Globals.snakeHead);
+        } else {
+            setImage(Globals.snakeHead1);
+        }
         pane.getChildren().add(this);
-
-        this.snakeID = snakeCounter++;
 
         health = new SimpleIntegerProperty(INITIAL_HEALTH);
 
@@ -129,7 +133,7 @@ public class SnakeHead extends GameEntity implements Animatable {
 
     public void addPart(int numParts) {
         for (int i = 0; i < numParts; i++) {
-            SnakeBody newPart = new SnakeBody(pane, tail);
+            SnakeBody newPart = new SnakeBody(pane, tail, snakeID);
             tailElements.add(newPart);
             tail = newPart;
         }

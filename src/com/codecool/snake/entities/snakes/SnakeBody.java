@@ -17,10 +17,14 @@ public class SnakeBody extends GameEntity implements Animatable {
     private Queue<Vec2d> history = new LinkedList<>();
     private static final int historySize = 10;
 
-    public SnakeBody(Pane pane, GameEntity parent) {
+    public SnakeBody(Pane pane, GameEntity parent, int snakeID) {
         super(pane);
         this.parent = parent;
-        setImage(Globals.snakeBody);
+        if (snakeID == 0){
+            setImage(Globals.snakeBody);
+        } else {
+            setImage(Globals.snakeBody1);
+        }
 
         // place it visually below the current tail
         List<Node> children = pane.getChildren();
