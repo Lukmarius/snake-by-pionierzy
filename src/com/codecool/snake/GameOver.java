@@ -43,12 +43,16 @@ public class GameOver {
         modalStage.show();
     }
 
-    public void gameOverIfAnotherSnakeIsDead(SnakeHead snake){ ;
+    public void gameOverIfAnotherSnakeIsDead(SnakeHead snake){
+        int count = 0;
         for(GameEntity gameObject : Globals.gameObjects){
             if (gameObject instanceof SnakeHead && !gameObject.equals(snake)) {
-                Globals.gameLoop.stop();
-                showPopUp();
+                count++;
             }
+        }
+        if (count<=0){
+            Globals.gameLoop.stop();
+            showPopUp();
         }
     }
 }
