@@ -26,7 +26,7 @@ public class SnakeBody extends GameEntity implements Animatable {
             setImage(Globals.snakeBody1);
         }
 
-        // place it visually below the current tail
+        // setLocation it visually below the current tail
         List<Node> children = pane.getChildren();
         children.add(children.indexOf(parent), this);
 

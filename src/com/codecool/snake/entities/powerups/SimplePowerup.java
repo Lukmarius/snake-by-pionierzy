@@ -1,14 +1,12 @@
 package com.codecool.snake.entities.powerups;
 
+import com.codecool.snake.Utils;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.scene.layout.Pane;
 
-import java.util.Random;
-
-// a simple powerup that makes the snake grow TODO make other powerups
 public class SimplePowerup extends GameEntity implements Interactable {
 
     private static final int LENGTH_GAIN = 2;
@@ -16,12 +14,10 @@ public class SimplePowerup extends GameEntity implements Interactable {
 
     public SimplePowerup(Pane pane) {
         super(pane);
-        setImage(Globals.powerupBerry);
+        this.setImage(Globals.powerupBerry);
         pane.getChildren().add(this);
 
-        Random rnd = new Random();
-        setX(rnd.nextDouble() * Globals.GAME_WIDTH);
-        setY(rnd.nextDouble() * Globals.GAME_HEIGHT);
+        this.setLocation(Utils.getRndSpawnableLocation());
     }
 
     @Override
@@ -29,9 +25,12 @@ public class SimplePowerup extends GameEntity implements Interactable {
         if (willBeDestroyed) return;
         willBeDestroyed = true;
 
+        // Spawn new Simple PowerUp
         Globals.addGameObject(new SimplePowerup(pane));
+        // Increase snake's body length
         snakeHead.addPart(LENGTH_GAIN);
-        destroy();
+
+        this.destroy();
     }
 
     @Override

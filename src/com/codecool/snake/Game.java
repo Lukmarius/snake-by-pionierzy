@@ -9,12 +9,12 @@ import javafx.scene.layout.Pane;
 
 public class Game extends Pane {
 
-    private GameMode gameMode;
+    public static final double GAME_WIDTH = 1000;
+    public static final double GAME_HEIGHT = 700;
 
     public Game(GameMode gameMode) {
         Globals.init();
         SnakeHead.resetSnakeCounter();
-        this.gameMode = gameMode;
 
         new SnakeHead(this, 500, 500);
         if (gameMode == GameMode.TWO_PLAYERS) {
