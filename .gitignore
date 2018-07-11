@@ -10,6 +10,7 @@
 .idea/dictionaries
 .idea/**/compiler.xml
 .idea/**/vcs.xml
+oop-snake.iml
 
 # Sensitive or high-churn files:
 .idea/**/dataSources/
