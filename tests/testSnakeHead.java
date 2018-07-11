@@ -13,7 +13,6 @@ import java.util.List;
 
 public class testSnakeHead {
 
-
     @Test
     void testCounter() {
         List<SnakeHead> players = new ArrayList<>(2);
