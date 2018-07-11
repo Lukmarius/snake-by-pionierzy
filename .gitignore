@@ -12,7 +12,6 @@
 .idea/**/compiler.xml
 .idea/**/vcs.xml
 oop-snake.iml
-java-se-snake.iml
 
 # Sensitive or high-churn files:
 .idea/**/dataSources/
