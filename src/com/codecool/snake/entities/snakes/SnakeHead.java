@@ -15,14 +15,20 @@ public class SnakeHead extends GameEntity implements Animatable {
     private static final int INITIAL_LENGTH = 4;
 
     private static final float speed = 2;
-    private static final float turnRate = 2;
+    private static final float baseTurnRate = 2;
+    private static final float superTurnRate = 6;
+    private float actualTurnRate = baseTurnRate;
     private GameEntity tail; // the last element. Needed to know where to add the next part.
     private int health;
     public IntegerProperty healthProperty;
     public IntegerProperty length;
-    private boolean isInvulnerable;
+    private boolean invulnerable;
+    private boolean turningFaster;
     private static int snakeCounter = 0;
     private int snakeID;
+    private int turnerUpDuration;
+    private int involnerabiltyDuration = 60*5;
+
 
     public SnakeHead(Pane pane, int xc, int yc) {
         super(pane);
@@ -42,10 +48,10 @@ public class SnakeHead extends GameEntity implements Animatable {
     public void step() {
         double dir = getRotate();
         if (Globals.leftKeyDown) {
-            dir = dir - turnRate;
+            dir = dir - actualTurnRate;
         }
         if (Globals.rightKeyDown) {
-            dir = dir + turnRate;
+            dir = dir + actualTurnRate;
         }
         // set rotation and position
         setRotate(dir);
@@ -62,6 +68,9 @@ public class SnakeHead extends GameEntity implements Animatable {
                     System.out.println(interactable.getMessage());
                 }
             }
+        }
+        if(turningFaster){
+           turnFasterFor5sec();
         }
 
         // check for game over condition
@@ -81,5 +90,28 @@ public class SnakeHead extends GameEntity implements Animatable {
     public void changeHealth(int diff) {
         health += diff;
         healthProperty.set(health);
+    }
+
+
+
+    public void switchInvulnerable() {
+        this.invulnerable = !invulnerable;
+    }
+
+
+    public void turnFaster(){
+        turningFaster = true;
+        actualTurnRate = superTurnRate;
+        turnerUpDuration = 60*5;
+    }
+
+    private void turnFasterFor5sec(){
+        if(turnerUpDuration>0){
+            turnerUpDuration--;
+            System.out.println(turnerUpDuration);
+        }else{
+            actualTurnRate = baseTurnRate;
+            turningFaster = false;
+        }
     }
 }
