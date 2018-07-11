@@ -54,7 +54,7 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
     private void bounce() {
         Random rnd = new Random();
 
-        direction = direction - rnd.nextDouble() * 90;
+        direction = direction - rnd.nextDouble() * 180;
         setRotate(direction);
         heading = Utils.directionToVector(direction, speed);
     }
