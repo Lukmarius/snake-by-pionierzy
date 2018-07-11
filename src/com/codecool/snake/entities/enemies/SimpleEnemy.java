@@ -15,19 +15,21 @@ import java.util.Random;
 public class SimpleEnemy extends GameEntity implements Animatable, Interactable {
 
     private Point2D heading;
+    private double direction;
     private static final int damage = 40;
+    private int speed;
 
     public SimpleEnemy(Pane pane) {
         super(pane);
 
         setImage(Globals.simpleEnemy);
         pane.getChildren().add(this);
-        int speed = 1;
+        speed = 1;
         Random rnd = new Random();
         setX(rnd.nextDouble() * Globals.GAME_WIDTH);
         setY(rnd.nextDouble() * Globals.GAME_HEIGHT);
 
-        double direction = rnd.nextDouble() * 360;
+        direction = rnd.nextDouble() * 360;
         setRotate(direction);
         heading = Utils.directionToVector(direction, speed);
     }
@@ -35,7 +37,9 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
     @Override
     public void step() {
         if (isOutOfBounds()) {
-            destroy();
+            bounce();
+            setX(getX() + heading.getX());
+            setY(getY() + heading.getY());
         }
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
@@ -47,7 +51,13 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
         destroy();
     }
 
-    private void bounce
+    private void bounce() {
+        Random rnd = new Random();
+
+        direction = direction - rnd.nextDouble() * 180;
+        setRotate(direction);
+        heading = Utils.directionToVector(direction, speed);
+    }
 
     @Override
     public String getMessage() {
