@@ -12,6 +12,7 @@ import java.util.Random;
 public class SimplePowerup extends GameEntity implements Interactable {
 
     private static final int LENGTH_GAIN = 2;
+    private boolean willBeDestroyed = false;
 
     public SimplePowerup(Pane pane) {
         super(pane);
@@ -25,6 +26,10 @@ public class SimplePowerup extends GameEntity implements Interactable {
 
     @Override
     public void apply(SnakeHead snakeHead) {
+        if (willBeDestroyed) return;
+        willBeDestroyed = true;
+
+        Globals.addGameObject(new SimplePowerup(pane));
         snakeHead.addPart(LENGTH_GAIN);
         destroy();
     }
