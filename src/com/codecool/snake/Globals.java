@@ -1,6 +1,7 @@
 package com.codecool.snake;
 
 import com.codecool.snake.entities.GameEntity;
+import com.codecool.snake.entities.powerups.SimplePowerup;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.beans.property.IntegerProperty;
 import javafx.scene.image.Image;
@@ -35,14 +36,18 @@ public class Globals {
     public static List<GameEntity> newGameObjects; // Holds game objects crated in this frame.
     public static List<GameEntity> oldGameObjects; // Holds game objects that will be destroyed this frame.
     public static GameLoop gameLoop;
+    public static List<SnakeHead> players;
+    public static boolean isGamePaused;
+
     public static GameOver gameOver;
-    public static List<SnakeHead> players = new ArrayList<>(2);
 
     public static void init() {
         gameObjects = new LinkedList<>();
         newGameObjects = new LinkedList<>();
         oldGameObjects = new LinkedList<>();
-        gameOver = new GameOver();
+        gameLoop = null;
+        players = new ArrayList<>(2);
+        isGamePaused = false;
     }
 
     public static void addGameObject(GameEntity toAdd) {

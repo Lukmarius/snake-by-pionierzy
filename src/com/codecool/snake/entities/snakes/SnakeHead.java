@@ -36,8 +36,9 @@ public class SnakeHead extends GameEntity implements Animatable {
     private int involnerabiltyDuration = 60*5;
     private List<GameEntity> tailElements;
 
-
-
+    public static void resetSnakeCounter() {
+        SnakeHead.snakeCounter = 0;
+    }
 
     public SnakeHead(Pane pane, int xc, int yc) {
         super(pane);

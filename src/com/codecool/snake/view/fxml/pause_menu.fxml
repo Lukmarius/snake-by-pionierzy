@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="20.0" stylesheets="@/css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codecool.snake.controller.PauseMenuController">
+   <children>
+      <Label styleClass="title" text="Game paused" />
+      <HBox alignment="TOP_CENTER" spacing="50.0">
+         <children>
+            <Button fx:id="exitBtn" mnemonicParsing="false" onAction="#exitGame" styleClass="menuBtn" text="Exit" />
+            <Button fx:id="backBtn" mnemonicParsing="false" onAction="#backToMainMenu" styleClass="menuBtn" text="Back to main menu" />
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</VBox>
