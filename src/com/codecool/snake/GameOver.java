@@ -30,7 +30,8 @@ public class GameOver {
         t.setTextAlignment(TextAlignment.CENTER);
         t.setFont(Font.font("Arial",80));
 
-        //t.setSelectionFill(Paint.valueOf("red"));
+        t.setFill(Paint.valueOf("Red"));
+        t.setStroke(Paint.valueOf("Black"));
         VBox vbox = new VBox(t, replayBtn, exitBtn);
         vbox.setAlignment(Pos.CENTER);
         vbox.setPadding(new Insets(25));
