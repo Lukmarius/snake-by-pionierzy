@@ -30,12 +30,16 @@ public class Globals {
     public static List<GameEntity> newGameObjects; // Holds game objects crated in this frame.
     public static List<GameEntity> oldGameObjects; // Holds game objects that will be destroyed this frame.
     public static GameLoop gameLoop;
-    public static List<SnakeHead> players = new ArrayList<>(2);
+    public static List<SnakeHead> players;
+    public static boolean isGamePaused;
 
     public static void init() {
         gameObjects = new LinkedList<>();
         newGameObjects = new LinkedList<>();
         oldGameObjects = new LinkedList<>();
+        gameLoop = null;
+        players = new ArrayList<>(2);
+        isGamePaused = false;
     }
 
     public static void addGameObject(GameEntity toAdd) {

@@ -23,32 +23,21 @@ public class GameController {
     @FXML private Pane gameContainer;
     @FXML private HBox playerDataContainer;
 
-    private boolean isPaused = true;
-
     private MainController mainController;
 
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
     }
 
-    @FXML
-    void showPauseMenu(ActionEvent event) {
-        if (isPaused) {
-            Globals.gameLoop.start();
-        } else {
-            Globals.gameLoop.stop();
-        }
-        isPaused = !isPaused;
-    }
 
     void setUpGame(Game.GameMode gameMode) {
         Game game = new Game(gameMode);
         gameContainer.getChildren().add(game);
+
         int players = gameMode.ordinal();
         for (int i = 0; i <= players; i++) {
             loadPlayerDataDisplay(i);
         }
-
 
         Scene scene = game.getScene();
         scene.setOnKeyPressed(event -> {
@@ -68,11 +57,10 @@ public class GameController {
             }
         });
 
-        isPaused = false;
         game.start();
     }
 
-    void loadPlayerDataDisplay(int playerId) {
+    private void loadPlayerDataDisplay(int playerId) {
         try {
             FXMLLoader playerLoader = new FXMLLoader(getClass().getResource(PlayerDataController.PlayerDataFXML));
             VBox playerData = playerLoader.load();
@@ -81,6 +69,16 @@ public class GameController {
             playerDataContainer.getChildren().add(playerData);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void pauseGame() {
+        Globals.isGamePaused = true;
+        Globals.gameLoop.stop();
+        mainController.showPauseMenu();
+        if (!Globals.isGamePaused) {
+            Globals.gameLoop.start();
         }
     }
 

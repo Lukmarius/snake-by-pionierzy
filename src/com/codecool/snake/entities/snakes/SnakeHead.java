@@ -33,6 +33,10 @@ public class SnakeHead extends GameEntity implements Animatable {
     private int snakeID;
     private List<GameEntity> tailElements;
 
+    public static void resetSnakeCounter() {
+        SnakeHead.snakeCounter = 0;
+    }
+
     public SnakeHead(Pane pane, int xc, int yc) {
         super(pane);
         setX(xc);

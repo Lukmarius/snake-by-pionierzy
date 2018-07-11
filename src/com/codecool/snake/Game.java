@@ -12,6 +12,7 @@ public class Game extends Pane {
 
     public Game(GameMode gameMode) {
         Globals.init();
+        SnakeHead.resetSnakeCounter();
         this.gameMode = gameMode;
 
         new SnakeHead(this, 500, 500);
