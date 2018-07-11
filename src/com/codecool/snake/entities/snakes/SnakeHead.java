@@ -28,6 +28,9 @@ public class SnakeHead extends GameEntity implements Animatable {
         super(pane);
         setX(xc);
         setY(yc);
+
+        this.snakeID = snakeCounter++;
+
         health = 100;
         healthProperty = new SimpleIntegerProperty(health);
         tail = this;
@@ -37,6 +40,10 @@ public class SnakeHead extends GameEntity implements Animatable {
         addPart(INITIAL_LENGTH);
         length = new SimpleIntegerProperty(INITIAL_LENGTH);
         Globals.player1 = this;
+    }
+
+    public int getSnakeID() {
+        return snakeID;
     }
 
     public void step() {
