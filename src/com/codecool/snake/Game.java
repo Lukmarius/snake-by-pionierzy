@@ -15,27 +15,38 @@ public class Game extends Pane {
     public static final double EDGE_SHIFT_BR = 45;
     public static final double EDGE_SHIFT_TL = 30;
 
+    private static final int INITIAL_ENEMIES_COUNT = 10;
+    private static final int SIMPLE_POWERUPS_COUNT_MULTIPLIER = 3;
+
+    public int playersCount;
+
     public Game(GameMode gameMode) {
         Globals.init();
-        SnakeHead.resetSnakeCounter();
 
-        new SnakeHead(this, 500, 500);
-        if (gameMode == GameMode.TWO_PLAYERS) {
-            new SnakeHead(this, 200, 500);
+        this.playersCount = gameMode.ordinal() + 1;
+
+        // Spawn players
+        double spacing = GAME_WIDTH / (playersCount + 1);
+        for (int i = 0; i < playersCount; i++) {
+            Globals.loadPlayerImages(i);
+            new SnakeHead(this, i, spacing * (i + 1), 500);
         }
 
-        for (int i = 0; i < 10; i++) {
+        // Spawn enemies
+        for (int i = 0; i < INITIAL_ENEMIES_COUNT; i++) {
             new SimpleEnemy(this);
         }
 
-        new SimplePowerUp(this);
-        new SimplePowerUp(this);
-        new SimplePowerUp(this);
-        if (gameMode.equals(GameMode.TWO_PLAYERS)) {
-            new SimplePowerUp(this);
-            new SimplePowerUp(this);
+        // Spawn simple power-ups
+        int simplePowerUpsCount = SIMPLE_POWERUPS_COUNT_MULTIPLIER * playersCount;
+        for (int i = 0; i < simplePowerUpsCount; i++) {
             new SimplePowerUp(this);
         }
+
+        // Spawn one of each other power-ups
+        new HealthPowerUp(this);
+        new SpeedUpTurnUp(this);
+        new Invulnerability(this);
     }
 
     public void start() {

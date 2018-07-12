@@ -1,10 +1,11 @@
 .menuBtn {
-    -fx-border-width: 2px;
+    -fx-border-width: 5px;
     -fx-border-style: solid;
     -fx-border-color: darkgreen;
-    -fx-border-radius: 4px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
     -fx-background-color: transparent;
-    -fx-font-size: 20px;
+    -fx-font-size: 36px;
 }
 
 .menuBtn:hover {
@@ -15,6 +16,9 @@
 
 .backdrop {
     -fx-background-image: url(/main_menu/bg.png);
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: contain;
     -fx-border-width: 4px;
     -fx-border-style: solid;
     -fx-border-color: #000;

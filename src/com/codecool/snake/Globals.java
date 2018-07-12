@@ -15,23 +15,17 @@ import java.util.*;
 // class for holding all static stuff
 public class Globals {
 
+    private static final int MAX_PLAYERS = Game.GameMode.TWO_PLAYERS.ordinal() + 1;
     public static HashMap<String, Image> images = new HashMap<>();
+    public static List<Boolean> leftKeysDown;
+    public static List<Boolean> rightKeysDown;
 
-    public static Image snakeHead = new Image("snake_head.png");
-    public static Image snakeBody = new Image("snake_body.png");
-    public static Image snakeHead1 = new Image("snake_head1.png");
-    public static Image snakeBody1 = new Image("snake_body1.png");
-    //.. put here the other images you want to use
-
-    public static boolean leftKeyDown;
-    public static boolean rightKeyDown;
-    public static boolean AKeyDown;
-    public static boolean DKeyDown;
     public static List<GameEntity> gameObjects;
     public static List<GameEntity> newGameObjects; // Holds game objects crated in this frame.
     public static List<GameEntity> oldGameObjects; // Holds game objects that will be destroyed this frame.
     public static GameLoop gameLoop;
     public static List<SnakeHead> players;
+
     public static boolean isGamePaused;
 
     public static GameOver gameOver;
@@ -42,10 +36,10 @@ public class Globals {
         newGameObjects = new LinkedList<>();
         oldGameObjects = new LinkedList<>();
         gameLoop = null;
-        players = new ArrayList<>(2);
         isGamePaused = false;
-        leftKeyDown = false;
-        rightKeyDown = false;
+        players = new ArrayList<>(MAX_PLAYERS);
+        leftKeysDown = Arrays.asList(false, false);
+        rightKeysDown = Arrays.asList(false, false);
     }
 
     private static void loadImages() {
@@ -53,7 +47,12 @@ public class Globals {
         images.put(HealthPowerUp.NAME, new Image("health_powerup.png"));
         images.put(SpeedUpTurnUp.NAME, new Image("turnrate_powerup.png"));
         images.put(Invulnerability.NAME, new Image("invulnerability_powerup.png"));
-        images.put(SimpleEnemy.NAME, new Image("simple_enemy.png"));
+        images.put(SimpleEnemy.NAME, new Image("angry_enemy.png"));
+    }
+
+    public static void loadPlayerImages(int playerId) {
+        images.put("snakeHead" + playerId, new Image("snake_head" + (playerId + 1) + ".png"));
+        images.put("snakeBody" + playerId, new Image("snake_body" + (playerId + 1) + ".png"));
     }
 
     public static void addGameObject(GameEntity toAdd) {

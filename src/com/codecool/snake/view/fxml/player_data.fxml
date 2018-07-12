@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -7,10 +8,15 @@
 
 <VBox prefHeight="60.0" prefWidth="150.0" spacing="2.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codecool.snake.controller.PlayerDataController">
    <children>
-      <Label fx:id="playerName" text="Player 1" />
-      <AnchorPane maxHeight="20.0" maxWidth="102.0" minHeight="20.0" minWidth="102.0" prefHeight="20.0" prefWidth="102.0" styleClass="healthBar">
+      <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
          <children>
-            <Rectangle fx:id="playerHealthBar" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="18.0" strokeType="INSIDE" styleClass="healthBarLive" width="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <ImageView fx:id="playerImage" fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="playerName" text="Player 1" />
+         </children>
+      </HBox>
+      <AnchorPane maxHeight="17.0" maxWidth="102.0" minHeight="17.0" minWidth="102.0" prefHeight="17.0" prefWidth="102.0" styleClass="healthBar">
+         <children>
+            <Rectangle fx:id="playerHealthBar" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="15.0" strokeType="INSIDE" styleClass="healthBarLive" width="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
          </children>
       </AnchorPane>
       <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">

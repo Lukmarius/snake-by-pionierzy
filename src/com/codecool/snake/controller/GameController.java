@@ -35,8 +35,7 @@ public class GameController {
         this.game = new Game(gameMode);
         gameContainer.getChildren().add(game);
 
-        int players = gameMode.ordinal();
-        for (int i = 0; i <= players; i++) {
+        for (int i = 0; i < this.game.playersCount; i++) {
             loadPlayerDataDisplay(i);
         }
 
@@ -46,18 +45,18 @@ public class GameController {
         Scene scene = game.getScene();
         scene.setOnKeyPressed(event -> {
             switch (event.getCode()) {
-                case LEFT:  Globals.leftKeyDown  = true; break;
-                case RIGHT: Globals.rightKeyDown  = true; break;
-                case A: Globals.AKeyDown  = true; break;
-                case D: Globals.DKeyDown  = true; break;
+                case LEFT:  Globals.leftKeysDown.set(0, true); break;
+                case RIGHT: Globals.rightKeysDown.set(0, true); break;
+                case A: Globals.leftKeysDown.set(1, true); break;
+                case D: Globals.rightKeysDown.set(1, true); break;
             }
         });
         scene.setOnKeyReleased(event -> {
             switch (event.getCode()) {
-                case LEFT:  Globals.leftKeyDown  = false; break;
-                case RIGHT: Globals.rightKeyDown  = false; break;
-                case A: Globals.AKeyDown  = false; break;
-                case D: Globals.DKeyDown  = false; break;
+                case LEFT:  Globals.leftKeysDown.set(0, false); break;
+                case RIGHT: Globals.rightKeysDown.set(0, false); break;
+                case A: Globals.leftKeysDown.set(1, false); break;
+                case D: Globals.rightKeysDown.set(1, false); break;
             }
         });
 

@@ -23,8 +23,8 @@ public class SnakeHead extends GameEntity implements Animatable {
     private static final float BASE_SPEED = 2;
     private static final float BASE_TURN_RATE = 3f;
 
-    private static int snakeCounter = 0;
     private int snakeID;
+    private String name;
 
     private IntegerProperty health;
     private IntegerProperty length;
@@ -38,20 +38,14 @@ public class SnakeHead extends GameEntity implements Animatable {
     private GameEntity tail; // the last element. Needed to know where to add the next part.
     private List<GameEntity> tailElements;
 
-    public static void resetSnakeCounter() {
-        SnakeHead.snakeCounter = 0;
-    }
-
-    public SnakeHead(Game game, int xc, int yc) {
+    public SnakeHead(Game game, int snakeID, double xc, double yc) {
         super(game);
-        this.snakeID = snakeCounter++;
+        this.snakeID = snakeID;
+        this.name = "snakeHead" + snakeID;
+
         this.setX(xc);
         this.setY(yc);
-        if (snakeID == 0) {
-            setImage(Globals.snakeHead);
-        } else {
-            setImage(Globals.snakeHead1);
-        }
+        this.setLook(this.name);
         game.getChildren().add(this);
 
         health = new SimpleIntegerProperty(INITIAL_HEALTH);
@@ -67,10 +61,6 @@ public class SnakeHead extends GameEntity implements Animatable {
         Globals.addPlayer(this);
     }
 
-    public int getSnakeID() {
-        return snakeID;
-    }
-
     public int getHealth() {
         return health.get();
     }
@@ -84,28 +74,19 @@ public class SnakeHead extends GameEntity implements Animatable {
     }
 
     public void step() {
-        double dir = getRotate();
-
-        if (snakeID == 0) {
-            if (Globals.leftKeyDown) {
-                dir = dir - turnRate;
-            }
-            if (Globals.rightKeyDown) {
-                dir = dir + turnRate;
-            }
-        } else if (snakeID == 1) {
-            if (Globals.AKeyDown) {
-                dir = dir - turnRate;
-            }
-            if (Globals.DKeyDown) {
-                dir = dir + turnRate;
-            }
+        double dir = this.getRotate();
+        if (Globals.leftKeysDown.get(snakeID)) {
+            dir = dir - turnRate;
         }
+        if (Globals.rightKeysDown.get(snakeID)) {
+            dir = dir + turnRate;
+        }
+
         // set rotation and position
-        setRotate(dir);
+        this.setRotate(dir);
         Point2D heading = Utils.directionToVector(dir, speed);
-        setX(getX() + heading.getX());
-        setY(getY() + heading.getY());
+        this.setX(this.getX() + heading.getX());
+        this.setY(this.getY() + heading.getY());
 
         // check if collided with an enemy or a powerup
         for (GameEntity entity : Globals.getGameObjects()) {
@@ -132,6 +113,7 @@ public class SnakeHead extends GameEntity implements Animatable {
         // check for game over condition
         if (this.getTouchingWall(this.getBoundsInParent()) != null || getHealth() <= 0) {
             System.out.println("Snake Dead");
+            this.health.setValue(0);
             for (GameEntity tail : tailElements) {
                 tail.destroy();
             }
@@ -182,11 +164,7 @@ public class SnakeHead extends GameEntity implements Animatable {
             invulnerabilityDuration--;
         } else {
             invulnerable = false;
-            if (snakeID == 0) {
-                setImage(Globals.snakeHead);
-            } else {
-                setImage(Globals.snakeHead1);
-            }
+            this.setLook(this.name);
         }
     }
 }

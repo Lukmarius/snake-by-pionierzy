@@ -12,14 +12,16 @@ import javafx.animation.AnimationTimer;
 import java.util.Random;
 
 public class GameLoop extends AnimationTimer {
-    private boolean snakeExists = false;
     private Game game;
+
     public GameLoop(Game game) {
         this.game = game;
     }
+
     // This gets called every 1/60 seconds
     @Override
     public void handle(long now) {
+        boolean snakeExists = false;
         for (GameEntity gameObject : Globals.gameObjects) {
             if (gameObject instanceof Animatable) {
                 if (gameObject instanceof SnakeHead) {
@@ -37,21 +39,17 @@ public class GameLoop extends AnimationTimer {
         int spawnChances = rnd.nextInt(100000);
         if (spawnChances < 40) {
             new Invulnerability(game);
-        }
-        else if (spawnChances < 80) {
-           new HealthPowerUp(game);
-        }
-        else if (spawnChances < 120) {
-           new SpeedUpTurnUp(game);
-        }
-        else if (spawnChances < 160) {
-           new SimpleEnemy(game);
+        } else if (spawnChances < 80) {
+            new HealthPowerUp(game);
+        } else if (spawnChances < 120) {
+            new SpeedUpTurnUp(game);
+        } else if (spawnChances < 160) {
+            new SimpleEnemy(game);
         }
         Globals.gameObjects.addAll(Globals.newGameObjects);
         Globals.newGameObjects.clear();
 
         Globals.gameObjects.removeAll(Globals.oldGameObjects);
         Globals.oldGameObjects.clear();
-        snakeExists = false;
     }
 }

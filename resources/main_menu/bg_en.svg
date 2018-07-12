@@ -16,8 +16,8 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
-   sodipodi:docname="bg.svg"
-   inkscape:export-filename="C:\Users\p_kru\OneDrive\CodeCool\Java\Java_w3\TW\resources\main_menu\bg.png"
+   sodipodi:docname="bg_en.svg"
+   inkscape:export-filename="C:\Users\p_kru\OneDrive\CodeCool\Java\Java_w3\TW\resources\main_menu\bg_slide.png"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96">
   <defs
@@ -233,7 +233,7 @@
      inkscape:cx="453.88082"
      inkscape:cy="315.86362"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="g826"
      showgrid="false"
      inkscape:window-width="1920"
      inkscape:window-height="1017"
@@ -290,7 +290,7 @@
          xml:space="preserve"><textPath
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Gill Sans Ultra Bold';-inkscape-font-specification:'Gill Sans Ultra Bold, ';fill:#007b00;fill-opacity:1;stroke-width:0.26458332"
            id="textPath4574"
-           xlink:href="#path4512">Ch...e, muje,</textPath></text>
+           xlink:href="#path4512">Sth..., sth...</textPath></text>
       <path
          sodipodi:nodetypes="ccc"
          inkscape:original-d="M 52.53869,89.113094 C 68.035979,80.0414 83.533003,70.969972 99.02976,61.89881 c 26.99782,12.470282 53.99648,24.941336 80.99432,37.4124"
@@ -313,7 +313,7 @@
          xml:space="preserve"><textPath
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.11111069px;font-family:'Gill Sans Ultra Bold';-inkscape-font-specification:'Gill Sans Ultra Bold, ';fill:#007b00;fill-opacity:1;stroke-width:0.26458332"
            id="textPath4571"
-           xlink:href="#path4512-4">dzikie węże</textPath></text>
+           xlink:href="#path4512-4">Wild Snakes</textPath></text>
       <path
          sodipodi:nodetypes="ccc"
          inkscape:original-d="m 66.638321,106.4858 c 9.11861,-7.149328 18.23742,-14.298759 27.35541,-21.447482 23.848329,7.44057 47.697499,14.8816 71.546049,22.322632"

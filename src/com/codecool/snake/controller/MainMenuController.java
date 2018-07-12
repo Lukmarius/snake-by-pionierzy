@@ -6,8 +6,8 @@ import javafx.scene.control.Button;
 
 public class MainMenuController {
 
-    public static final double MENU_WIDTH = 600;
-    public static final double MENU_HEIGHT = 400;
+    public static final double MENU_WIDTH = 1000;
+    public static final double MENU_HEIGHT = 700;
     public static final String MenuFXML = "../view/fxml/main_menu.fxml";
 
     @FXML private Button newGameBtn1p;
