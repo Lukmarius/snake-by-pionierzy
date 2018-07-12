@@ -31,7 +31,7 @@ public class SnakeHead extends GameEntity implements Animatable {
     private float speed;
     private float turnRate;
     private boolean invulnerable;
-    private boolean turningFaster;
+    private boolean faster;
 
     private GameEntity tail; // the last element. Needed to know where to add the next part.
     private int turnerUpDuration;
@@ -103,7 +103,7 @@ public class SnakeHead extends GameEntity implements Animatable {
         }
         // set rotation and position
         setRotate(dir);
-        Point2D heading = Utils.directionToVector(dir, BASE_SPEED);
+        Point2D heading = Utils.directionToVector(dir, speed);
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
 
@@ -126,7 +126,7 @@ public class SnakeHead extends GameEntity implements Animatable {
                 }
             }
         }
-        if (turningFaster) turnFasterFor5sec();
+        if (faster) beFasterFor5Seconds();
         if (invulnerable) makeInvulnerableFor5sec();
 
         // check for game over condition
@@ -149,7 +149,7 @@ public class SnakeHead extends GameEntity implements Animatable {
     }
 
     public void changeHealth(int diff) {
-        health.setValue(getHealth() + diff);
+        health.setValue(Math.min(100, getHealth() + diff));
     }
 
 
@@ -160,18 +160,19 @@ public class SnakeHead extends GameEntity implements Animatable {
     }
 
 
-    public void turnFaster(float superTurnRate, int duration) {
-        turningFaster = true;
+    public void beFaster(float superTurnRate, int duration) {
+        faster = true;
         turnRate = superTurnRate;
         turnerUpDuration = duration;
     }
 
-    private void turnFasterFor5sec() {
+    private void beFasterFor5Seconds() {
         if (turnerUpDuration > 0) {
             turnerUpDuration--;
         } else {
             turnRate = BASE_TURN_RATE;
-            turningFaster = false;
+            speed = BASE_SPEED;
+            faster = false;
         }
     }
 

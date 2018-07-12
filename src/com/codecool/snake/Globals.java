@@ -6,7 +6,7 @@ import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.powerups.HealthPowerUp;
 import com.codecool.snake.entities.powerups.Invulnerability;
 import com.codecool.snake.entities.powerups.SimplePowerUp;
-import com.codecool.snake.entities.powerups.TurnRateUp;
+import com.codecool.snake.entities.powerups.SpeedUpTurnUp;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.scene.image.Image;
 
@@ -51,7 +51,7 @@ public class Globals {
     private static void loadImages() {
         images.put(SimplePowerUp.NAME, new Image("powerup_berry.png"));
         images.put(HealthPowerUp.NAME, new Image("health_powerup.png"));
-        images.put(TurnRateUp.NAME, new Image("turnrate_powerup.png"));
+        images.put(SpeedUpTurnUp.NAME, new Image("turnrate_powerup.png"));
         images.put(Invulnerability.NAME, new Image("invulnerability_powerup.png"));
         images.put(SimpleEnemy.NAME, new Image("simple_enemy.png"));
     }
