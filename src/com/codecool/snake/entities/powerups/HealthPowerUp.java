@@ -10,7 +10,7 @@ import com.codecool.snake.entities.snakes.SnakeHead;
 public class HealthPowerUp extends GameEntity implements Interactable {
 
     public static final String NAME = "HealthPowerUp";
-    private static final int HEALTH_GAIN = 10;
+    private static final int HEALTH_GAIN = 20;
 
     public HealthPowerUp(Game game) {
         super(game);
@@ -27,6 +27,6 @@ public class HealthPowerUp extends GameEntity implements Interactable {
 
     @Override
     public String getMessage() {
-        return "Got +10 health";
+        return "Got +20 health";
     }
 }
