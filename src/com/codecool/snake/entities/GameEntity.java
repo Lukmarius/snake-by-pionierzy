@@ -2,6 +2,8 @@ package com.codecool.snake.entities;
 
 import com.codecool.snake.Game;
 import com.codecool.snake.Globals;
+import com.codecool.snake.Wall;
+import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
 import javafx.scene.image.ImageView;
 
@@ -37,5 +39,18 @@ public abstract class GameEntity extends ImageView {
             return true;
         }
         return false;
+    }
+
+    protected Point2D getTouchingWall(Bounds bounds) {
+        if (bounds.intersects(Wall.N.getBounds())) {
+            return Wall.N.getNormalVector();
+        } else if (bounds.intersects(Wall.E.getBounds())) {
+            return Wall.E.getNormalVector();
+        } else if (bounds.intersects(Wall.S.getBounds())) {
+            return Wall.S.getNormalVector();
+        } else if (bounds.intersects(Wall.W.getBounds())) {
+            return Wall.W.getNormalVector();
+        }
+        return null;
     }
 }

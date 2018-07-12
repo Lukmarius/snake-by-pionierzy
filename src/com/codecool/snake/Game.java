@@ -10,7 +10,8 @@ public class Game extends Pane {
 
     public static final double GAME_WIDTH = 1000;
     public static final double GAME_HEIGHT = 700;
-    public static final double EDGE_SHIFT = 10;
+    public static final double EDGE_SHIFT_BR = 45;
+    public static final double EDGE_SHIFT_TL = 30;
 
     public Game(GameMode gameMode) {
         Globals.init();

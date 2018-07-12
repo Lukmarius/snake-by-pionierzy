@@ -1,15 +1,12 @@
 package com.codecool.snake;
 
+import javafx.geometry.BoundingBox;
+import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
 
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Utils {
-
-    public static final Point2D N_WALL = new Point2D(0, -1).normalize();
-    public static final Point2D E_WALL = new Point2D(-1, 0).normalize();
-    public static final Point2D S_WALL = new Point2D(0, 1).normalize();
-    public static final Point2D W_WALL = new Point2D(1, 0).normalize();
 
     /*
     Converts a direction in degrees (0...360) to x and y coordinates.
@@ -24,10 +21,17 @@ public class Utils {
     public static Point2D getRndSpawnableLocation() {
 
         // Add shift in order not to spawn too close to the edges
-        Random rnd = new Random();
-        double x = rnd.nextDouble() * (Game.GAME_WIDTH - Game.EDGE_SHIFT) + Game.EDGE_SHIFT;
-        double y = rnd.nextDouble() * (Game.GAME_HEIGHT - Game.EDGE_SHIFT) + Game.EDGE_SHIFT;
+        double x = ThreadLocalRandom.current().nextDouble(Game.EDGE_SHIFT_TL, Game.GAME_WIDTH - Game.EDGE_SHIFT_BR);
+        double y = ThreadLocalRandom.current().nextDouble(Game.EDGE_SHIFT_TL, Game.GAME_HEIGHT - Game.EDGE_SHIFT_BR);
 
         return new Point2D(x, y);
+    }
+
+    public static Bounds getResizedBounds(Bounds bounds, double shift) {
+        return new BoundingBox(
+            bounds.getMinX() - shift,
+            bounds.getMinY() - shift,
+            bounds.getWidth() + shift * 2,
+            bounds.getHeight() + shift * 2);
     }
 }
