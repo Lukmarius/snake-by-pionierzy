@@ -6,14 +6,12 @@ import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Animatable;
-import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.powerups.Invulnerability;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Point2D;
-import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,21 +20,22 @@ public class SnakeHead extends GameEntity implements Animatable {
 
     private static final int INITIAL_LENGTH = 4;
     private static final int INITIAL_HEALTH = 100;
-
-    private static final int POWER_UP_DURATION = 60 * 5;
-    private static final float SPEED = 2;
+    private static final float BASE_SPEED = 2;
     private static final float BASE_TURN_RATE = 2;
-    private static final float SUPER_TURN_RATE = 6;
+
     private static int snakeCounter = 0;
-    public IntegerProperty health;
-    public IntegerProperty length;
-    private float actualTurnRate = BASE_TURN_RATE;
-    private GameEntity tail; // the last element. Needed to know where to add the next part.
+    private int snakeID;
+
+    private IntegerProperty health;
+    private IntegerProperty length;
+    private float speed;
+    private float turnRate;
     private boolean invulnerable;
     private boolean turningFaster;
-    private int snakeID;
+
+    private GameEntity tail; // the last element. Needed to know where to add the next part.
     private int turnerUpDuration;
-    private int involnerabiltyDuration;
+    private int invulnerabilityDuration;
     private List<GameEntity> tailElements;
 
     public static void resetSnakeCounter() {
@@ -46,8 +45,8 @@ public class SnakeHead extends GameEntity implements Animatable {
     public SnakeHead(Game game, int xc, int yc) {
         super(game);
         this.snakeID = snakeCounter++;
-        setX(xc);
-        setY(yc);
+        this.setX(xc);
+        this.setY(yc);
         if (snakeID == 0){
             setImage(Globals.snakeHead);
         } else {
@@ -61,6 +60,9 @@ public class SnakeHead extends GameEntity implements Animatable {
         tailElements = new ArrayList<>();
         length = new SimpleIntegerProperty(INITIAL_LENGTH);
         addPart(INITIAL_LENGTH);
+
+        this.speed = BASE_SPEED;
+        this.turnRate = BASE_TURN_RATE;
 
         Globals.addPlayer(this);
     }
@@ -86,29 +88,30 @@ public class SnakeHead extends GameEntity implements Animatable {
 
         if (snakeID == 0) {
             if (Globals.leftKeyDown) {
-                dir = dir - actualTurnRate;
+                dir = dir - turnRate;
             }
             if (Globals.rightKeyDown) {
-                dir = dir + actualTurnRate;
+                dir = dir + turnRate;
             }
         } else if (snakeID == 1) {
             if (Globals.AKeyDown) {
-                dir = dir - actualTurnRate;
+                dir = dir - turnRate;
             }
             if (Globals.DKeyDown) {
-                dir = dir + actualTurnRate;
+                dir = dir + turnRate;
             }
         }
         // set rotation and position
         setRotate(dir);
-        Point2D heading = Utils.directionToVector(dir, SPEED);
+        Point2D heading = Utils.directionToVector(dir, BASE_SPEED);
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
 
         // check if collided with an enemy or a powerup
         for (GameEntity entity : Globals.getGameObjects()) {
             if (getBoundsInParent().intersects(entity.getBoundsInParent())) {
-                if (entity instanceof SnakeHead && !entity.equals(this) && !invulnerable && !((SnakeHead) entity).invulnerable) {
+                if (entity instanceof SnakeHead && !entity.equals(this) &&
+                        !invulnerable && !((SnakeHead) entity).invulnerable) {
                     Globals.gameLoop.stop();
                     Globals.gameOver.showPopUp();
                 } else if (entity instanceof Interactable && !invulnerable) {
@@ -127,7 +130,7 @@ public class SnakeHead extends GameEntity implements Animatable {
         if (invulnerable) makeInvulnerableFor5sec();
 
         // check for game over condition
-        if (isOutOfBounds() || getHealth() <= 0) {
+        if (this.getTouchingWall(this.getBoundsInParent()) != null || getHealth() <= 0) {
             System.out.println("Snake Dead");
             for (GameEntity tail : tailElements) {
                 tail.destroy();
@@ -150,31 +153,31 @@ public class SnakeHead extends GameEntity implements Animatable {
     }
 
 
-    public void switchInvulnerableOn() {
-        involnerabiltyDuration = POWER_UP_DURATION;
-        this.invulnerable = true;
+    public void switchInvulnerableOn(int duration) {
+        invulnerabilityDuration = duration;
+        invulnerable = true;
         this.setLook(Invulnerability.NAME);
     }
 
 
-    public void turnFaster() {
+    public void turnFaster(float superTurnRate, int duration) {
         turningFaster = true;
-        actualTurnRate = SUPER_TURN_RATE;
-        turnerUpDuration = POWER_UP_DURATION;
+        turnRate = superTurnRate;
+        turnerUpDuration = duration;
     }
 
     private void turnFasterFor5sec() {
         if (turnerUpDuration > 0) {
             turnerUpDuration--;
         } else {
-            actualTurnRate = BASE_TURN_RATE;
+            turnRate = BASE_TURN_RATE;
             turningFaster = false;
         }
     }
 
     private void makeInvulnerableFor5sec() {
-        if (involnerabiltyDuration > 0) {
-            involnerabiltyDuration--;
+        if (invulnerabilityDuration > 0) {
+            invulnerabilityDuration--;
         } else {
             invulnerable = false;
             if (snakeID == 0){

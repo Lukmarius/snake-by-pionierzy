@@ -14,6 +14,9 @@ public class TurnRateUp extends GameEntity implements Interactable {
 
     public static final String NAME = "TurnRateUp";
 
+    private static final float SUPER_TURN_RATE = 6;
+    private static final int POWER_UP_DURATION = 60 * 5;
+
     public TurnRateUp(Game game) {
         super(game);
         this.setLook(NAME);
@@ -24,7 +27,7 @@ public class TurnRateUp extends GameEntity implements Interactable {
     @Override
     public void apply(SnakeHead snakeHead) {
         this.destroy();
-        snakeHead.turnFaster();
+        snakeHead.turnFaster(SUPER_TURN_RATE, POWER_UP_DURATION);
     }
 
     @Override
