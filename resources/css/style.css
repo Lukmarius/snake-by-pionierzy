@@ -8,7 +8,15 @@
     -fx-font-size: 36px;
 }
 
-.menuBtn:hover {
+.backBtn {
+    -fx-border-style: none;
+    -fx-background-radius: 8px;
+    -fx-background-color: transparent;
+    -fx-font-size: 36px;
+    -fx-text-fill: darkgreen;
+}
+
+.menuBtn:hover, .backBtn:hover {
     -fx-background-color: darkgreen;
     -fx-text-fill: #fff;
     -fx-cursor: hand;
@@ -25,5 +33,5 @@
 }
 
 .title {
-    -fx-font-size: 30px;
+    -fx-font-size: 48px;
 }

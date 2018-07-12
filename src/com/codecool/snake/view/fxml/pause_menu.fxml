@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="20.0" stylesheets="@/css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codecool.snake.controller.PauseMenuController">
    <children>
       <Label styleClass="title" text="Game paused" />
-      <HBox alignment="TOP_CENTER" spacing="50.0">
+      <Button fx:id="continueBtn" cancelButton="true" defaultButton="true" mnemonicParsing="false" onAction="#continueGame" styleClass="menuBtn" text="Continue game" />
+      <HBox alignment="TOP_CENTER" spacing="10.0">
          <children>
-            <Button fx:id="exitBtn" mnemonicParsing="false" onAction="#exitGame" styleClass="menuBtn" text="Exit" />
-            <Button fx:id="backBtn" mnemonicParsing="false" onAction="#backToMainMenu" styleClass="menuBtn" text="Back to main menu" />
+            <Button fx:id="exitBtn" mnemonicParsing="false" onAction="#exitGame" styleClass="backBtn" text="Exit" />
+            <Button fx:id="backBtn" mnemonicParsing="false" onAction="#backToMainMenu" styleClass="backBtn" text="Main menu" />
          </children>
       </HBox>
    </children>

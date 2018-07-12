@@ -76,6 +76,8 @@ public class MainController {
             popUpWindow.setTitle("Game paused");
             popUpWindow.setScene(new Scene(root));
             popUpWindow.setOnCloseRequest(event -> Globals.isGamePaused = false);
+            pauseMenuController.setPopUpWindow(popUpWindow);
+
             popUpWindow.showAndWait();
 
         } catch (IOException e) {
