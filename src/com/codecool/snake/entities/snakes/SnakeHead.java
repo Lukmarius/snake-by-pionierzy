@@ -123,7 +123,7 @@ public class SnakeHead extends GameEntity implements Animatable {
         }
         if (turningFaster) turnFasterFor5sec();
         if (invulnerable) makeInvulnerableFor5sec();
-
+        Globals.scheduleNewInvulnerability(pane); // had to call it with access to pane and call it every frame!
         // check for game over condition
         if (isOutOfBounds() || getHealth() <= 0) {
             System.out.println("Snake Dead");

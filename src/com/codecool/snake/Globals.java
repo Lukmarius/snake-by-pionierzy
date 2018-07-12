@@ -1,15 +1,17 @@
 package com.codecool.snake;
 
 import com.codecool.snake.entities.GameEntity;
+import com.codecool.snake.entities.powerups.Invulnerability;
 import com.codecool.snake.entities.powerups.SimplePowerup;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.beans.property.IntegerProperty;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Pane;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 // class for holding all static stuff
 public class Globals {
@@ -38,8 +40,10 @@ public class Globals {
     public static GameLoop gameLoop;
     public static List<SnakeHead> players;
     public static boolean isGamePaused;
-
+    private static ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
     public static GameOver gameOver;
+    public static int invulnerabilityPowerupTimer;
+    public static boolean spawnInvulnerability = false;
 
     public static void init() {
         gameObjects = new LinkedList<>();
@@ -64,5 +68,16 @@ public class Globals {
 
     public static void addPlayer(SnakeHead player) {
         players.add(player);
+    }
+
+    public static void scheduleNewInvulnerability (Pane pane) {
+        if (!spawnInvulnerability) return;
+        if (invulnerabilityPowerupTimer > 0) {
+            invulnerabilityPowerupTimer--;
+        } else {
+            Invulnerability powerup = new Invulnerability(pane);
+            Globals.addGameObject(powerup);
+            spawnInvulnerability = false;
+        }
     }
 }

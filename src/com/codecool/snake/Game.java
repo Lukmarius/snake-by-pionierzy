@@ -8,6 +8,7 @@ import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 
+
 public class Game extends Pane {
 
     private GameMode gameMode;
@@ -53,5 +54,16 @@ public class Game extends Pane {
     public enum GameMode {
         SINGLE_PLAYER,
         TWO_PLAYERS
+    }
+
+    public void scheduleNewInvulnerability () {
+        if (!Globals.spawnInvulnerability) return;
+        if (Globals.invulnerabilityPowerupTimer > 0) {
+            Globals.invulnerabilityPowerupTimer--;
+        } else {
+            Invulnerability powerup = new Invulnerability(this);
+            Globals.addGameObject(powerup);
+            Globals.spawnInvulnerability = false;
+        }
     }
 }
