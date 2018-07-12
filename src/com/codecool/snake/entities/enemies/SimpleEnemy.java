@@ -40,7 +40,7 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
     }
 
     private boolean spawnEnemyValid() {
-        double restrictedRange = 30;
+        double restrictedRange = 50;
         this.setLocation(Utils.getRndSpawnableLocation());
         for (SnakeHead snake : Globals.players) {
             Bounds snakeBounds = snake.getBoundsInParent();

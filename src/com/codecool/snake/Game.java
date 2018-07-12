@@ -31,19 +31,15 @@ public class Game extends Pane {
         new SimplePowerUp(this);
         new SimplePowerUp(this);
         new SimplePowerUp(this);
-        new SimplePowerUp(this);
-
-        new SpeedUpTurnUp(this);
-        new SpeedUpTurnUp(this);
-        new SpeedUpTurnUp(this);
-
-        new Invulnerability(this);
-
-        new HealthPowerUp(this);
+        if (gameMode.equals(GameMode.TWO_PLAYERS)) {
+            new SimplePowerUp(this);
+            new SimplePowerUp(this);
+            new SimplePowerUp(this);
+        }
     }
 
     public void start() {
-        Globals.gameLoop = new GameLoop();
+        Globals.gameLoop = new GameLoop(this);
         Globals.gameLoop.start();
     }
 
