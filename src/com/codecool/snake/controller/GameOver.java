@@ -30,7 +30,8 @@ public class GameOver {
     public void showPopUp() {
         Stage modalStage = new Stage();
         modalStage.initModality(Modality.APPLICATION_MODAL);
-        modalStage.initStyle(StageStyle.DECORATED);
+        modalStage.initStyle(StageStyle.UTILITY);
+        modalStage.initOwner(mainController.getPrimaryStage());
 
         Button replayBtn = new Button("Play again");
         replayBtn.setOnAction(event -> {
