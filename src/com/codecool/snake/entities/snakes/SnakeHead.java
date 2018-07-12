@@ -146,7 +146,7 @@ public class SnakeHead extends GameEntity implements Animatable {
     }
 
     public void changeHealth(int diff) {
-        health.setValue(getHealth() + diff);
+        health.setValue(Math.min(100,getHealth() + diff));
     }
 
 

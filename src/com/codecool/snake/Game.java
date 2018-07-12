@@ -1,6 +1,7 @@
 package com.codecool.snake;
 
 import com.codecool.snake.entities.enemies.SimpleEnemy;
+import com.codecool.snake.entities.powerups.HealthPowerUp;
 import com.codecool.snake.entities.powerups.Invulnerability;
 import com.codecool.snake.entities.powerups.SimplePowerUp;
 import com.codecool.snake.entities.powerups.TurnRateUp;
@@ -37,6 +38,8 @@ public class Game extends Pane {
         new TurnRateUp(this);
 
         new Invulnerability(this);
+
+        new HealthPowerUp(this);
     }
 
     public void start() {
