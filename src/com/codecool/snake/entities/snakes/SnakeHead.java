@@ -6,14 +6,12 @@ import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Animatable;
-import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.powerups.Invulnerability;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Point2D;
-import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,18 +22,18 @@ public class SnakeHead extends GameEntity implements Animatable {
     private static final int INITIAL_HEALTH = 100;
 
     private static final int POWER_UP_DURATION = 60 * 5;
-    private static final float SPEED = 2;
     private static final float BASE_TURN_RATE = 2;
     private static final float SUPER_TURN_RATE = 6;
     private static int snakeCounter = 0;
+    private float speed = 2;
     public IntegerProperty health;
     public IntegerProperty length;
     private float actualTurnRate = BASE_TURN_RATE;
     private GameEntity tail; // the last element. Needed to know where to add the next part.
     private boolean invulnerable;
-    private boolean turningFaster;
+    private boolean faster;
     private int snakeID;
-    private int turnerUpDuration;
+    private int speedUpTurnUpDuration;
     private int involnerabiltyDuration;
     private List<GameEntity> tailElements;
 
@@ -101,7 +99,7 @@ public class SnakeHead extends GameEntity implements Animatable {
         }
         // set rotation and position
         setRotate(dir);
-        Point2D heading = Utils.directionToVector(dir, SPEED);
+        Point2D heading = Utils.directionToVector(dir, speed);
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
 
@@ -123,7 +121,7 @@ public class SnakeHead extends GameEntity implements Animatable {
                 }
             }
         }
-        if (turningFaster) turnFasterFor5sec();
+        if (faster) beFasterFor5Seconds();
         if (invulnerable) makeInvulnerableFor5sec();
 
         // check for game over condition
@@ -157,18 +155,20 @@ public class SnakeHead extends GameEntity implements Animatable {
     }
 
 
-    public void turnFaster() {
-        turningFaster = true;
+    public void beFaster() {
+        faster = true;
         actualTurnRate = SUPER_TURN_RATE;
-        turnerUpDuration = POWER_UP_DURATION;
+        speedUpTurnUpDuration = POWER_UP_DURATION;
+        speed = 3;
     }
 
-    private void turnFasterFor5sec() {
-        if (turnerUpDuration > 0) {
-            turnerUpDuration--;
+    private void beFasterFor5Seconds() {
+        if (speedUpTurnUpDuration > 0) {
+            speedUpTurnUpDuration--;
         } else {
             actualTurnRate = BASE_TURN_RATE;
-            turningFaster = false;
+            faster = false;
+            speed = 2;
         }
     }
 
