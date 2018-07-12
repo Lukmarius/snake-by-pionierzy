@@ -32,10 +32,10 @@ public class SnakeHead extends GameEntity implements Animatable {
     private float turnRate;
     private boolean invulnerable;
     private boolean faster;
-
-    private GameEntity tail; // the last element. Needed to know where to add the next part.
     private int fasterDuration;
     private int invulnerabilityDuration;
+
+    private GameEntity tail; // the last element. Needed to know where to add the next part.
     private List<GameEntity> tailElements;
 
     public static void resetSnakeCounter() {
@@ -47,7 +47,7 @@ public class SnakeHead extends GameEntity implements Animatable {
         this.snakeID = snakeCounter++;
         this.setX(xc);
         this.setY(yc);
-        if (snakeID == 0){
+        if (snakeID == 0) {
             setImage(Globals.snakeHead);
         } else {
             setImage(Globals.snakeHead1);
@@ -182,7 +182,7 @@ public class SnakeHead extends GameEntity implements Animatable {
             invulnerabilityDuration--;
         } else {
             invulnerable = false;
-            if (snakeID == 0){
+            if (snakeID == 0) {
                 setImage(Globals.snakeHead);
             } else {
                 setImage(Globals.snakeHead1);
