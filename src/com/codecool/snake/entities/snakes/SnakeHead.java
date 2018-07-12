@@ -151,6 +151,7 @@ public class SnakeHead extends GameEntity implements Animatable {
     public void switchInvulnerableOn() {
         involnerabiltyDuration = POWER_UP_DURATION;
         this.invulnerable = true;
+        setImage(Globals.invulnerability);
     }
 
 
@@ -174,6 +175,11 @@ public class SnakeHead extends GameEntity implements Animatable {
             involnerabiltyDuration--;
         } else {
             invulnerable = false;
+            if (snakeID == 0){
+                setImage(Globals.snakeHead);
+            } else {
+                setImage(Globals.snakeHead1);
+            }
         }
     }
 }
