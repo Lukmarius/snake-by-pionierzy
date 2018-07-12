@@ -36,16 +36,16 @@ public class GameLoop extends AnimationTimer {
         Random rnd = new Random();
         int spawnChances = rnd.nextInt(100000);
         if (spawnChances < 40) {
-            Globals.addGameObject(new Invulnerability(game));
+            new Invulnerability(game);
         }
         else if (spawnChances < 80) {
-            Globals.addGameObject(new HealthPowerUp(game));
+           new HealthPowerUp(game);
         }
         else if (spawnChances < 120) {
-            Globals.addGameObject(new SpeedUpTurnUp(game));
+           new SpeedUpTurnUp(game);
         }
         else if (spawnChances < 160) {
-            Globals.addGameObject(new SimpleEnemy(game));
+           new SimpleEnemy(game);
         }
         Globals.gameObjects.addAll(Globals.newGameObjects);
         Globals.newGameObjects.clear();
