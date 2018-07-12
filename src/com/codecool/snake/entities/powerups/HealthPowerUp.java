@@ -1,23 +1,21 @@
 package com.codecool.snake.entities.powerups;
 
+import com.codecool.snake.Game;
 import com.codecool.snake.Globals;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.snakes.SnakeHead;
-import javafx.scene.layout.Pane;
 
-import java.util.Random;
+public class HealthPowerUp extends GameEntity implements Interactable {
 
-public class HealthPowerup extends GameEntity implements Interactable {
-
+    public static final String NAME = "HealthPowerUp";
     private static final int HEALTH_GAIN = 10;
 
-    public HealthPowerup(Pane pane) {
-        super(pane);
-        this.setImage(Globals.healthPowerUp);
-        pane.getChildren().add(this);
-
+    public HealthPowerUp(Game game) {
+        super(game);
+        this.setLook(NAME);
+        game.getChildren().add(this);
         this.setLocation(Utils.getRndSpawnableLocation());
     }
 

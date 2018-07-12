@@ -1,5 +1,6 @@
-package com.codecool.snake;
+package com.codecool.snake.controller;
 
+import com.codecool.snake.Globals;
 import com.codecool.snake.controller.MainController;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.snakes.SnakeHead;
@@ -32,7 +33,10 @@ public class GameOver {
         modalStage.initStyle(StageStyle.DECORATED);
 
         Button replayBtn = new Button("Play again");
-        replayBtn.setOnAction(event -> mainController.showMainMenu());
+        replayBtn.setOnAction(event -> {
+            modalStage.close();
+            mainController.showMainMenu();
+        });
         Button exitBtn = new Button("Exit game");
         exitBtn.setOnAction(event -> Platform.exit());
 

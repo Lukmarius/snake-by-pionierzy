@@ -4,22 +4,20 @@ import com.codecool.snake.Game;
 import com.codecool.snake.Globals;
 import javafx.geometry.Point2D;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 
-// The base class for every game entity.
 public abstract class GameEntity extends ImageView {
 
-    protected Pane pane;
+    protected Game game;
 
-    protected GameEntity(Pane pane) {
-        this.pane = pane;
+    protected GameEntity(Game game) {
+        this.game = game;
         // add to the main loop.
         Globals.addGameObject(this);
     }
 
     public void destroy() {
         if (getParent() != null) {
-            pane.getChildren().remove(this);
+            game.getChildren().remove(this);
         }
         Globals.removeGameObject(this);
     }
@@ -27,6 +25,10 @@ public abstract class GameEntity extends ImageView {
     protected void setLocation(Point2D location) {
         this.setX(location.getX());
         this.setY(location.getY());
+    }
+
+    protected void setLook(String name) {
+        this.setImage(Globals.images.get(name));
     }
 
     protected boolean isOutOfBounds() {

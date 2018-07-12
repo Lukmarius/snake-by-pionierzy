@@ -1,8 +1,7 @@
 package com.codecool.snake.entities.snakes;
 
 
-import com.codecool.snake.GameLoop;
-import com.codecool.snake.GameOver;
+import com.codecool.snake.Game;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
@@ -33,15 +32,15 @@ public class SnakeHead extends GameEntity implements Animatable {
     private static int snakeCounter = 0;
     private int snakeID;
     private int turnerUpDuration;
-    private int involnerabiltyDuration = 60*5;
+    private int invulnerabilityDuration = 60 * 5;
     private List<GameEntity> tailElements;
 
     public static void resetSnakeCounter() {
         SnakeHead.snakeCounter = 0;
     }
 
-    public SnakeHead(Pane pane, int xc, int yc) {
-        super(pane);
+    public SnakeHead(Game game, int xc, int yc) {
+        super(game);
         this.snakeID = snakeCounter++;
         setX(xc);
         setY(yc);
@@ -50,7 +49,7 @@ public class SnakeHead extends GameEntity implements Animatable {
         } else {
             setImage(Globals.snakeHead1);
         }
-        pane.getChildren().add(this);
+        game.getChildren().add(this);
 
         health = new SimpleIntegerProperty(INITIAL_HEALTH);
 
@@ -133,7 +132,7 @@ public class SnakeHead extends GameEntity implements Animatable {
 
     public void addPart(int numParts) {
         for (int i = 0; i < numParts; i++) {
-            SnakeBody newPart = new SnakeBody(pane, tail, snakeID);
+            SnakeBody newPart = new SnakeBody(game, tail, snakeID);
             tailElements.add(newPart);
             tail = newPart;
         }

@@ -1,5 +1,6 @@
 package com.codecool.snake.entities.powerups;
 
+import com.codecool.snake.Game;
 import com.codecool.snake.Globals;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.GameEntity;
@@ -11,11 +12,12 @@ import java.util.Random;
 
 public class TurnRateUp extends GameEntity implements Interactable {
 
-    public TurnRateUp(Pane pane) {
-        super(pane);
-        this.setImage(Globals.turnRateUp);
-        pane.getChildren().add(this);
+    public static final String NAME = "TurnRateUp";
 
+    public TurnRateUp(Game game) {
+        super(game);
+        this.setLook(NAME);
+        game.getChildren().add(this);
         this.setLocation(Utils.getRndSpawnableLocation());
     }
 
@@ -23,7 +25,6 @@ public class TurnRateUp extends GameEntity implements Interactable {
     public void apply(SnakeHead snakeHead) {
         this.destroy();
         snakeHead.turnFaster();
-
     }
 
     @Override

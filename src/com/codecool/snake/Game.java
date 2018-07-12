@@ -1,16 +1,16 @@
 package com.codecool.snake;
 
 import com.codecool.snake.entities.enemies.SimpleEnemy;
-import com.codecool.snake.entities.powerups.SimplePowerup;
+import com.codecool.snake.entities.powerups.SimplePowerUp;
 import com.codecool.snake.entities.powerups.TurnRateUp;
 import com.codecool.snake.entities.snakes.SnakeHead;
-import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 
 public class Game extends Pane {
 
     public static final double GAME_WIDTH = 1000;
     public static final double GAME_HEIGHT = 700;
+    public static final double EDGE_SHIFT = 10;
 
     public Game(GameMode gameMode) {
         Globals.init();
@@ -21,21 +21,14 @@ public class Game extends Pane {
             new SnakeHead(this, 200, 500);
         }
 
-        new SimpleEnemy(this);
-        new SimpleEnemy(this);
-        new SimpleEnemy(this);
-        new SimpleEnemy(this);
-        new SimpleEnemy(this);
-        new SimpleEnemy(this);
-        new SimpleEnemy(this);
-        new SimpleEnemy(this);
-        new SimpleEnemy(this);
-        new SimpleEnemy(this);
+        for (int i = 0; i < 10; i++) {
+            new SimpleEnemy(this);
+        }
 
-        new SimplePowerup(this);
-        new SimplePowerup(this);
-        new SimplePowerup(this);
-        new SimplePowerup(this);
+        new SimplePowerUp(this);
+        new SimplePowerUp(this);
+        new SimplePowerUp(this);
+        new SimplePowerUp(this);
 
         new TurnRateUp(this);
         new TurnRateUp(this);

@@ -1,5 +1,6 @@
 package com.codecool.snake.entities.snakes;
 
+import com.codecool.snake.Game;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
@@ -17,8 +18,8 @@ public class SnakeBody extends GameEntity implements Animatable {
     private Queue<Vec2d> history = new LinkedList<>();
     private static final int historySize = 10;
 
-    public SnakeBody(Pane pane, GameEntity parent, int snakeID) {
-        super(pane);
+    public SnakeBody(Game game, GameEntity parent, int snakeID) {
+        super(game);
         this.parent = parent;
         if (snakeID == 0){
             setImage(Globals.snakeBody);
@@ -27,7 +28,7 @@ public class SnakeBody extends GameEntity implements Animatable {
         }
 
         // setLocation it visually below the current tail
-        List<Node> children = pane.getChildren();
+        List<Node> children = game.getChildren();
         children.add(children.indexOf(parent), this);
 
         double xc = parent.getX();

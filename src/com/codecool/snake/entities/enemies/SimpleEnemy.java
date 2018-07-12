@@ -1,80 +1,97 @@
 package com.codecool.snake.entities.enemies;
 
+import com.codecool.snake.Game;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.snakes.SnakeHead;
+import javafx.geometry.BoundingBox;
+import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
 
 import java.util.Random;
 
-// a simple enemy TODO make better ones.
 public class SimpleEnemy extends GameEntity implements Animatable, Interactable {
+
+    public static final String NAME = "SimpleEnemy";
+    private static final int DAMAGE = 40;
+    private static final int SPEED = 2;
 
     private Point2D heading;
     private double direction;
-    private static final int damage = 40;
-    private int speed;
 
-    public SimpleEnemy(Pane pane) {
-        super(pane);
+    public SimpleEnemy(Game game) {
+        super(game);
+        this.setLook(NAME);
+        game.getChildren().add(this);
 
-        setImage(Globals.simpleEnemy);
-        pane.getChildren().add(this);
-        speed = 1;
-        Random rnd = new Random();
         boolean isOverlapping;
-
         do {
-            isOverlapping = false;
-            setX(rnd.nextDouble() * Globals.GAME_WIDTH);
-            setY(rnd.nextDouble() * Globals.GAME_HEIGHT);
-            for (SnakeHead snake : Globals.players) {
-                if (getY() > snake.getY() - 30 && getY() < snake.getY() + 30 && getX() > snake.getX() - 30 && getX() < snake.getX() + 30) {
-                    isOverlapping = true;
-                }
+            isOverlapping = !spawnEnemyValid();
+        } while (isOverlapping);
+
+        Random rnd = new Random();
+        direction = rnd.nextDouble() * 360;
+        this.setRotate(direction);
+        heading = Utils.directionToVector(direction, SPEED);
+    }
+
+    private boolean spawnEnemyValid() {
+        double restrictedRange = 30;
+        this.setLocation(Utils.getRndSpawnableLocation());
+        for (SnakeHead snake : Globals.players) {
+            Bounds snakeBounds = snake.getBoundsInParent();
+            Bounds restricted = new BoundingBox(
+                    snakeBounds.getMinX() - restrictedRange,
+                    snakeBounds.getMinY() - restrictedRange,
+                    snakeBounds.getWidth() + restrictedRange * 2,
+                    snakeBounds.getHeight() + restrictedRange * 2);
+            if (this.getBoundsInParent().intersects(restricted)) {
+                return false;
             }
         }
-        while (isOverlapping);
-        direction = rnd.nextDouble() * 360;
-        setRotate(direction);
-        heading = Utils.directionToVector(direction, speed);
+        return true;
     }
 
     @Override
     public void step() {
-        if (isOutOfBounds()) {
-            bounce();
-            setX(getX() + 5 * heading.getX());
-            setY(getY() + 5 * heading.getY());
+        if (this.isOutOfBounds()) {
+            this.bounce(this.getWall());
         }
-        setX(getX() + heading.getX());
-        setY(getY() + heading.getY());
+
+        this.setX(this.getX() + this.heading.getX());
+        this.setY(this.getY() + this.heading.getY());
     }
 
     @Override
     public void apply(SnakeHead player) {
-        player.changeHealth(-damage);
-        destroy();
+        player.changeHealth(-DAMAGE);
+        this.destroy();
     }
 
-    private void bounce() {
-        Random rnd = new Random();
+    private Point2D getWall() {
+        if (this.getX() <= 0) {
+            return Utils.W_WALL;
+        } else if (this.getY() <= 0) {
+            return Utils.N_WALL;
+        } else if (this.getX() >= Game.GAME_WIDTH) {
+            return Utils.E_WALL;
+        }
+        return Utils.S_WALL;
+    }
 
-        direction = direction - rnd.nextDouble() * 180;
-        setRotate(direction);
-        heading = Utils.directionToVector(direction, speed);
+    private void bounce(Point2D wall) {
+        Point2D reflectedHeading = heading.subtract(wall.multiply(2).multiply(wall.dotProduct(heading)));
+        direction = heading.angle(reflectedHeading);
+        this.setRotate(direction);
+        heading = reflectedHeading;
     }
 
     @Override
     public String getMessage() {
-        return "10 damage";
-    }
-
-    public double getDirection() {
-        return direction;
+        return "40 DAMAGE";
     }
 }

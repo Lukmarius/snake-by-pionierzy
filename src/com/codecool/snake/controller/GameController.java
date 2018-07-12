@@ -1,9 +1,7 @@
 package com.codecool.snake.controller;
 
 import com.codecool.snake.Game;
-import com.codecool.snake.GameOver;
 import com.codecool.snake.Globals;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -26,13 +24,15 @@ public class GameController {
 
     private MainController mainController;
 
+    private Game game;
+
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
     }
 
 
     void setUpGame(Game.GameMode gameMode) {
-        Game game = new Game(gameMode);
+        this.game = new Game(gameMode);
         gameContainer.getChildren().add(game);
 
         int players = gameMode.ordinal();

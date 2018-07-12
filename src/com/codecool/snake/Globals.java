@@ -1,31 +1,26 @@
 package com.codecool.snake;
 
+import com.codecool.snake.controller.GameOver;
 import com.codecool.snake.entities.GameEntity;
-import com.codecool.snake.entities.powerups.SimplePowerup;
+import com.codecool.snake.entities.enemies.SimpleEnemy;
+import com.codecool.snake.entities.powerups.HealthPowerUp;
+import com.codecool.snake.entities.powerups.Invulnerability;
+import com.codecool.snake.entities.powerups.SimplePowerUp;
+import com.codecool.snake.entities.powerups.TurnRateUp;
 import com.codecool.snake.entities.snakes.SnakeHead;
-import javafx.beans.property.IntegerProperty;
 import javafx.scene.image.Image;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 // class for holding all static stuff
 public class Globals {
 
-    public static final double GAME_WIDTH = 1000;
-    public static final double GAME_HEIGHT = 700;
+    public static HashMap<String, Image> images = new HashMap<>();
 
     public static Image snakeHead = new Image("snake_head.png");
     public static Image snakeBody = new Image("snake_body.png");
     public static Image snakeHead1 = new Image("snake_head1.png");
     public static Image snakeBody1 = new Image("snake_body1.png");
-    public static Image simpleEnemy = new Image("simple_enemy.png");
-    public static Image powerupBerry = new Image("powerup_berry.png");
-    public static Image turnRateUp = new Image("turnrate_powerup.png");
-    public static Image healthPowerUp = new Image("health_powerup.png");
-    public static Image invulnerability = new Image("invulnerability_powerup.png");
     //.. put here the other images you want to use
 
     public static boolean leftKeyDown;
@@ -42,12 +37,23 @@ public class Globals {
     public static GameOver gameOver;
 
     public static void init() {
+        loadImages();
         gameObjects = new LinkedList<>();
         newGameObjects = new LinkedList<>();
         oldGameObjects = new LinkedList<>();
         gameLoop = null;
         players = new ArrayList<>(2);
         isGamePaused = false;
+        leftKeyDown = false;
+        rightKeyDown = false;
+    }
+
+    private static void loadImages() {
+        images.put(SimplePowerUp.NAME, new Image("powerup_berry.png"));
+        images.put(HealthPowerUp.NAME, new Image("health_powerup.png"));
+        images.put(TurnRateUp.NAME, new Image("turnrate_powerup.png"));
+        images.put(Invulnerability.NAME, new Image("invulnerability_powerup.png"));
+        images.put(SimpleEnemy.NAME, new Image("simple_enemy.png"));
     }
 
     public static void addGameObject(GameEntity toAdd) {
