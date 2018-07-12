@@ -34,7 +34,7 @@ public class SnakeHead extends GameEntity implements Animatable {
     private boolean faster;
 
     private GameEntity tail; // the last element. Needed to know where to add the next part.
-    private int turnerUpDuration;
+    private int fasterDuration;
     private int invulnerabilityDuration;
     private List<GameEntity> tailElements;
 
@@ -160,15 +160,16 @@ public class SnakeHead extends GameEntity implements Animatable {
     }
 
 
-    public void beFaster(float superTurnRate, int duration) {
+    public void beFaster(float superSpeed, float superTurnRate, int duration) {
         faster = true;
         turnRate = superTurnRate;
-        turnerUpDuration = duration;
+        speed = superSpeed;
+        fasterDuration = duration;
     }
 
     private void beFasterFor5Seconds() {
-        if (turnerUpDuration > 0) {
-            turnerUpDuration--;
+        if (fasterDuration > 0) {
+            fasterDuration--;
         } else {
             turnRate = BASE_TURN_RATE;
             speed = BASE_SPEED;
