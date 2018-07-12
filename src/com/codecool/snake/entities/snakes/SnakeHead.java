@@ -1,13 +1,12 @@
 package com.codecool.snake.entities.snakes;
 
 
-import com.codecool.snake.GameLoop;
-import com.codecool.snake.GameOver;
-import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
-import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.Utils;
+import com.codecool.snake.entities.Animatable;
+import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Interactable;
+import com.codecool.snake.entities.enemies.SimpleEnemy;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Point2D;
@@ -21,22 +20,21 @@ public class SnakeHead extends GameEntity implements Animatable {
     private static final int INITIAL_LENGTH = 4;
     private static final int INITIAL_HEALTH = 100;
 
-    private static final float speed = 2;
-    private static final float baseTurnRate = 2;
-    private static final float superTurnRate = 6;
-    private float actualTurnRate = baseTurnRate;
-    private GameEntity tail; // the last element. Needed to know where to add the next part.
+    private static final int POWER_UP_DURATION = 60 * 5;
+    private static final float SPEED = 2;
+    private static final float BASE_TURN_RATE = 2;
+    private static final float SUPER_TURN_RATE = 6;
+    private static int snakeCounter = 0;
     public IntegerProperty health;
     public IntegerProperty length;
+    private float actualTurnRate = BASE_TURN_RATE;
+    private GameEntity tail; // the last element. Needed to know where to add the next part.
     private boolean invulnerable;
     private boolean turningFaster;
-    private static int snakeCounter = 0;
     private int snakeID;
     private int turnerUpDuration;
-    private int involnerabiltyDuration = 60*5;
+    private int involnerabiltyDuration;
     private List<GameEntity> tailElements;
-
-
 
 
     public SnakeHead(Pane pane, int xc, int yc) {
@@ -84,8 +82,7 @@ public class SnakeHead extends GameEntity implements Animatable {
             if (Globals.rightKeyDown) {
                 dir = dir + actualTurnRate;
             }
-        }
-        else if (snakeID == 1) {
+        } else if (snakeID == 1) {
             if (Globals.AKeyDown) {
                 dir = dir - actualTurnRate;
             }
@@ -95,32 +92,35 @@ public class SnakeHead extends GameEntity implements Animatable {
         }
         // set rotation and position
         setRotate(dir);
-        Point2D heading = Utils.directionToVector(dir, speed);
+        Point2D heading = Utils.directionToVector(dir, SPEED);
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
 
         // check if collided with an enemy or a powerup
         for (GameEntity entity : Globals.getGameObjects()) {
             if (getBoundsInParent().intersects(entity.getBoundsInParent())) {
-                if (entity instanceof SnakeHead && !entity.equals(this)) {
+                if (entity instanceof SnakeHead && !entity.equals(this) && !invulnerable && !((SnakeHead) entity).invulnerable) {
                     Globals.gameLoop.stop();
                     Globals.gameOver.showPopUp();
+                } else if (entity instanceof Interactable && !invulnerable) {
+                    Interactable interactable = (Interactable) entity;
+                    interactable.apply(this);
+                    System.out.println(interactable.getMessage());
                 }
-                else if (entity instanceof Interactable) {
+                if (invulnerable && !(entity instanceof SimpleEnemy) && entity instanceof Interactable) {
                     Interactable interactable = (Interactable) entity;
                     interactable.apply(this);
                     System.out.println(interactable.getMessage());
                 }
             }
         }
-        if(turningFaster){
-           turnFasterFor5sec();
-        }
+        if (turningFaster) turnFasterFor5sec();
+        if (invulnerable) makeInvulnerableFor5sec();
 
         // check for game over condition
         if (isOutOfBounds() || getHealth() <= 0) {
             System.out.println("Snake Dead");
-            for (GameEntity tail: tailElements) {
+            for (GameEntity tail : tailElements) {
                 tail.destroy();
             }
             destroy();
@@ -141,24 +141,32 @@ public class SnakeHead extends GameEntity implements Animatable {
     }
 
 
-
-    public void switchInvulnerable() {
-        this.invulnerable = !invulnerable;
+    public void switchInvulnerableOn() {
+        involnerabiltyDuration = POWER_UP_DURATION;
+        this.invulnerable = true;
     }
 
 
-    public void turnFaster(){
+    public void turnFaster() {
         turningFaster = true;
-        actualTurnRate = superTurnRate;
-        turnerUpDuration = 60*5;
+        actualTurnRate = SUPER_TURN_RATE;
+        turnerUpDuration = POWER_UP_DURATION;
     }
 
-    private void turnFasterFor5sec(){
-        if(turnerUpDuration>0){
+    private void turnFasterFor5sec() {
+        if (turnerUpDuration > 0) {
             turnerUpDuration--;
-        }else{
-            actualTurnRate = baseTurnRate;
+        } else {
+            actualTurnRate = BASE_TURN_RATE;
             turningFaster = false;
+        }
+    }
+
+    private void makeInvulnerableFor5sec() {
+        if (involnerabiltyDuration > 0) {
+            involnerabiltyDuration--;
+        } else {
+            invulnerable = false;
         }
     }
 }
