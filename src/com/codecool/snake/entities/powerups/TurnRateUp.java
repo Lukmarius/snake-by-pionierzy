@@ -12,7 +12,7 @@ public class TurnRateUp extends GameEntity implements Interactable {
 
     public TurnRateUp(Pane pane) {
         super(pane);
-        setImage(Globals.snakeBody);
+        setImage(Globals.turnRateUp);
         pane.getChildren().add(this);
 
         Random rnd = new Random();

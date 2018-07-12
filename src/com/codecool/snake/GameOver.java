@@ -1,5 +1,6 @@
 package com.codecool.snake;
 
+import com.codecool.snake.controller.MainController;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.application.Platform;
@@ -18,13 +19,20 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class GameOver {
+
+    private MainController mainController;
+
+    public void setMainController(MainController mainController) {
+        this.mainController = mainController;
+    }
+
     public void showPopUp() {
         Stage modalStage = new Stage();
         modalStage.initModality(Modality.APPLICATION_MODAL);
         modalStage.initStyle(StageStyle.DECORATED);
 
         Button replayBtn = new Button("Play again");
-        //replayBtn.setOnAction(event -> Main.restart()); -------RESTART
+        replayBtn.setOnAction(event -> mainController.showMainMenu());
         Button exitBtn = new Button("Exit game");
         exitBtn.setOnAction(event -> Platform.exit());
 

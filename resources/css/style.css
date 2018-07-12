@@ -19,3 +19,7 @@
     -fx-border-style: solid;
     -fx-border-color: #000;
 }
+
+.title {
+    -fx-font-size: 30px;
+}
