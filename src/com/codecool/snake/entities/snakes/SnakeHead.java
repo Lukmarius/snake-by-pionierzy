@@ -20,8 +20,8 @@ public class SnakeHead extends GameEntity implements Animatable {
 
     private static final int INITIAL_LENGTH = 4;
     private static final int INITIAL_HEALTH = 100;
-    private static final float BASE_SPEED = 2;
-    private static final float BASE_TURN_RATE = 3f;
+    private static final float BASE_SPEED = 2.5f;
+    private static final float BASE_TURN_RATE = 3.5f;
 
     private int snakeID;
     private String name;
