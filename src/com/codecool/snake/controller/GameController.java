@@ -49,6 +49,7 @@ public class GameController {
                 case RIGHT: Globals.rightKeysDown.set(0, true); break;
                 case A: Globals.leftKeysDown.set(1, true); break;
                 case D: Globals.rightKeysDown.set(1, true); break;
+                case ESCAPE: pauseGame(); break;
             }
         });
         scene.setOnKeyReleased(event -> {
